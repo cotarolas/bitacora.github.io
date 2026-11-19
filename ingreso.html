@@ -22,7 +22,15 @@
   };
 </script>
 <script src="https://cdn.tailwindcss.com"></script>
-  
+  <!-- Tailwind CSS sin Preflight para proteger Bootstrap -->
+<script>
+  tailwind.config = {
+    corePlugins: {
+      preflight: false
+    }
+  };
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
   <style>
       /* ========================================
          NAVEGACIÓN PRINCIPAL BITÁCORA P&D
@@ -46,15 +54,70 @@
       }
       
       /* Enlaces de navegación */
-      .nav-link {
-        transition: background-color 0.2s ease, color 0.2s ease;
-      }
-      
-      /* Elemento activo */
-      .nav-link.active {
-        background-color: rgba(255, 255, 255, 0.10);
-        color: #bfdbfe;
-      }
+     
+/* ========================================
+   NAVEGACIÓN PRINCIPAL BITÁCORA P&D
+======================================== */
+
+summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.dropdown-panel {
+  display: none;
+}
+
+details[open] .dropdown-panel {
+  display: block;
+}
+
+.nav-link {
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.nav-link.active {
+  background-color: rgba(255,255,255,.10);
+  color: #bfdbfe;
+}
+
+.dropdown-panel a {
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.dropdown-panel a.active {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+.nav-link:focus-visible,
+.dropdown-panel a:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  #main-navigation {
+    width: 100%;
+  }
+
+  #main-navigation .dropdown-panel {
+    margin-left: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link,
+  .dropdown-panel a {
+    transition: none;
+  }
+}
+
       
       /* Submenús */
       .dropdown-panel a {
@@ -95,7 +158,10 @@
 
 <!-- ENCABEZADO Y NAVEGACIÓN -->
 
+
+<!-- MENÚ PRINCIPAL BITÁCORA P&D -->
 <header class="sticky top-0 z-50 bg-[#102a4c] text-white shadow-lg">
+
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
     <div class="flex min-h-[76px] flex-wrap items-center justify-between">
@@ -110,13 +176,15 @@
           <span class="text-xl font-bold tracking-wide leading-tight">
             BITÁCORA
           </span>
+
           <span class="text-xs font-medium tracking-widest text-blue-200">
             P&D · PANEL DE CONTROL
           </span>
         </span>
+
       </a>
 
-      <!-- Botón menú móvil -->
+      <!-- Botón móvil -->
       <button
         id="menu-toggle"
         type="button"
@@ -126,6 +194,7 @@
         aria-controls="main-navigation">
 
         <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+
       </button>
 
       <!-- Navegación -->
@@ -137,9 +206,11 @@
           <!-- Inicio -->
           <li>
             <a href="index.html"
-               class="nav-link active flex items-center gap-2 rounded-lg px-4 py-3 text-white no-underline" aria-current="page" hover:bg-white/10 hover:text-blue-200">
+               class="nav-link flex items-center gap-2 rounded-lg px-4 py-3 text-white no-underline hover:bg-white/10 hover:text-blue-200">
+
               <i class="fa-solid fa-house"></i>
               Inicio
+
             </a>
           </li>
 
@@ -147,54 +218,61 @@
           <li>
             <details class="group relative">
 
-              
               <summary
-                class="nav-link active flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200"
-                aria-current="page">
+                class="nav-link active flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
+
                 <i class="fa-solid fa-clipboard-list"></i>
                 Ingresos
-                <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
-              </summary>
 
+                <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
+
+              </summary>
 
               <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
 
                 <li>
-                  
                   <a href="ingreso.html"
                      class="active block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700"
                      aria-current="page">
+
                     <i class="fa-solid fa-users mr-2"></i>
                     Ingreso RACSA
-                  </a>
 
+                  </a>
                 </li>
 
                 <li>
                   <a href="ingvarios.html"
                      class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+
                     <i class="fa-solid fa-user-group mr-2"></i>
                     Ingresos varios
+
                   </a>
                 </li>
 
                 <li>
                   <a href="seguridad.html"
                      class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+
                     <i class="fa-solid fa-shield-halved mr-2"></i>
                     Seguridad
+
                   </a>
                 </li>
 
                 <li>
                   <a href="conavi.html"
                      class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+
                     <i class="fa-solid fa-road mr-2"></i>
                     CONAVI
+
                   </a>
                 </li>
 
               </ul>
+
             </details>
           </li>
 
@@ -204,9 +282,12 @@
 
               <summary
                 class="nav-link flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
+
                 <i class="fa-solid fa-calendar-days"></i>
                 Eventos
+
                 <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
+
               </summary>
 
               <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
@@ -214,20 +295,25 @@
                 <li>
                   <a href="eventos.html"
                      class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+
                     <i class="fa-solid fa-calendar-check mr-2"></i>
                     Eventos
+
                   </a>
                 </li>
 
                 <li>
                   <a href="controlvehicular.html"
                      class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+
                     <i class="fa-solid fa-car mr-2"></i>
                     Control vehicular
+
                   </a>
                 </li>
 
               </ul>
+
             </details>
           </li>
 
@@ -237,6 +323,7 @@
     </div>
   </div>
 </header>
+
 
 <!-- BUSCADOR GLOBAL BITÁCORA P&D -->
 <section class="busqueda-global" aria-label="Buscador global">
@@ -539,6 +626,87 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <script src="busqueda.js" defer></script>
   
+
+/* ========================================
+   CONTROL DEL MENÚ MÓVIL
+======================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const menuToggle = document.getElementById("menu-toggle");
+  const mainNavigation = document.getElementById("main-navigation");
+  const menuIcon = document.getElementById("menu-icon");
+
+  if (!menuToggle || !mainNavigation) return;
+
+  function closeMenu() {
+    mainNavigation.classList.add("hidden");
+
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menú");
+
+    if (menuIcon) {
+      menuIcon.classList.remove("fa-xmark");
+      menuIcon.classList.add("fa-bars");
+    }
+  }
+
+  function openMenu() {
+    mainNavigation.classList.remove("hidden");
+
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Cerrar menú");
+
+    if (menuIcon) {
+      menuIcon.classList.remove("fa-bars");
+      menuIcon.classList.add("fa-xmark");
+    }
+  }
+
+  menuToggle.addEventListener("click", function () {
+
+    const isExpanded =
+      menuToggle.getAttribute("aria-expanded") === "true";
+
+    if (isExpanded) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+
+  });
+
+  mainNavigation.querySelectorAll("a").forEach(function (link) {
+
+    link.addEventListener("click", function () {
+
+      if (window.innerWidth < 768) {
+        closeMenu();
+      }
+
+    });
+
+  });
+
+  window.addEventListener("resize", function () {
+
+    if (window.innerWidth >= 768) {
+
+      mainNavigation.classList.remove("hidden");
+      menuToggle.setAttribute("aria-expanded", "false");
+
+      if (menuIcon) {
+        menuIcon.classList.remove("fa-xmark");
+        menuIcon.classList.add("fa-bars");
+      }
+
+    } else {
+      closeMenu();
+    }
+
+  });
+
+});
 
 </body>
 </html>
