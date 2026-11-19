@@ -835,27 +835,7 @@ details[open] .dropdown-panel {
   </script>
 
 <script src="busqueda.js" defer></script>
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-
-    const boton = document.getElementById("menu-toggle");
-    const navegacion = document.getElementById("main-navigation");
-
-    if (boton && navegacion) {
-      boton.addEventListener("click", function () {
-
-        const estaOculto = navegacion.classList.toggle("hidden");
-
-        boton.setAttribute("aria-expanded", String(!estaOculto));
-
-        boton.innerHTML = estaOculto
-          ? '<i class="fa-solid fa-bars"></i>'
-          : '<i class="fa-solid fa-xmark"></i>';
-      });
-    }
-
-  });
-</script>
+  
 
 </body>
 </html>
