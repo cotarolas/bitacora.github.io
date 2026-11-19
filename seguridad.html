@@ -220,6 +220,135 @@
         grid-template-columns: 1fr;
       }
     }
+
+    
+/* BUSCADOR GLOBAL */
+.busqueda-global {
+  background: #ffffff;
+  padding: 18px 15px;
+  border-bottom: 1px solid #e5eaf1;
+}
+
+.busqueda-contenedor {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.busqueda-campo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f3f6fa;
+  border: 1px solid #dbe3ed;
+  border-radius: 12px;
+  padding: 6px 8px 6px 15px;
+}
+
+.busqueda-campo > i {
+  color: #2563eb;
+  font-size: 1.1rem;
+}
+
+.busqueda-campo input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px 0;
+  color: #263445;
+  font-size: .95rem;
+}
+
+.busqueda-campo input:focus {
+  outline: none;
+}
+
+.busqueda-campo button {
+  border: none;
+  border-radius: 8px;
+  background: #102a4c;
+  color: white;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.busqueda-campo button:hover {
+  background: #2563eb;
+}
+
+.busqueda-resultados {
+  display: grid;
+  gap: 10px;
+}
+
+.busqueda-contador,
+.busqueda-mensaje {
+  margin: 14px 0 5px;
+  color: #475569;
+  font-size: .9rem;
+}
+
+.busqueda-resultado {
+  background: #f8fafc;
+  border: 1px solid #e1e8f0;
+  border-left: 4px solid #2563eb;
+  border-radius: 9px;
+  padding: 14px 16px;
+}
+
+.busqueda-resultado h3 {
+  color: #102a4c;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 7px;
+}
+
+.busqueda-resultado p {
+  color: #475569;
+  font-size: .9rem;
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+
+.busqueda-resultado a {
+  color: #1d4ed8;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.busqueda-resultado a:hover {
+  text-decoration: underline;
+}
+
+.busqueda-coincidencia {
+  outline: 3px solid #60a5fa !important;
+  outline-offset: 4px;
+  border-radius: 8px;
+  background-color: #eff6ff !important;
+}
+
+@media (max-width: 576px) {
+  .busqueda-global {
+    padding: 12px;
+  }
+
+  .busqueda-campo {
+    gap: 8px;
+    padding-left: 10px;
+  }
+
+  .busqueda-campo input {
+    font-size: .85rem;
+  }
+
+  .busqueda-campo button {
+    padding: 10px 13px;
+  }
+}
+
   </style>
 </head>
 
