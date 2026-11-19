@@ -395,6 +395,37 @@
     padding: 10px 13px;
   }
 }
+    /* NAVEGACIÓN UNIFICADA */
+summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.dropdown-panel {
+  display: none;
+}
+
+details[open] .dropdown-panel {
+  display: block;
+}
+
+#main-navigation {
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  #main-navigation {
+    width: 100%;
+  }
+
+  #main-navigation .dropdown-panel {
+    margin-left: 12px;
+  }
+}
 
   </style>
 </head>
