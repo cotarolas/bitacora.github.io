@@ -3,104 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitácora - Panel de Control</title>
-    <!-- Tailwind CSS para un diseño moderno y responsivo -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+    <meta name="theme-color" content="#102a4c">
+    <meta name="description" content="Bitácora P&D: panel de control y accesos institucionales.">
+    <title>Bitácora P&amp;D | Panel de control</title>
 
-    <!-- HEADER / NAVEGACIÓN -->
-    <header class="bg-blue-900 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold tracking-wide flex items-center gap-2 mb-3 md:mb-0">
-                <i class="fa-solid fa-book-open"></i> Bitácora
-            </a>
-            
-            <nav>
-                <ul class="flex flex-wrap justify-center gap-6 font-medium text-sm md:text-base">
-                    <li>
-                        <a href="index.html" class="hover:text-blue-300 transition border-b-2 border-white pb-1">Inicio</a>
-                    </li>
-                    <!-- Menú Ingresos -->
-                    <li class="relative group">
-                        <a href="ingreso.html" class="hover:text-blue-300 transition flex items-center gap-1">
-                            Ingresos <i class="fa-solid fa-chevron-down text-xs"></i>
-                        </a>
-                        <ul class="absolute hidden group-hover:block bg-white text-slate-800 shadow-xl rounded-md mt-1 py-2 w-48 z-10">
-                            <li><a href="ingreso.html" class="block px-4 py-2 hover:bg-slate-100">Racsa</a></li>
-                            <li><hr class="border-slate-200 my-1"></li>
-                            <li><a href="ingvarios.html" class="block px-4 py-2 hover:bg-slate-100">Conavi & Externo</a></li>
-                            <li><hr class="border-slate-200 my-1"></li>
-                            <li><a href="seguridad.html" class="block px-4 py-2 hover:bg-slate-100">Seguridad Privada</a></li>
-                        </ul>
-                    </li>
-                    <!-- Menú Eventos -->
-                    <li class="relative group">
-                        <a href="eventos.html" class="hover:text-blue-300 transition flex items-center gap-1">
-                            Eventos <i class="fa-solid fa-chevron-down text-xs"></i>
-                        </a>
-                        <ul class="absolute hidden group-hover:block bg-white text-slate-800 shadow-xl rounded-md mt-1 py-2 w-48 z-10">
-                            <li><a href="conavi.html" class="block px-4 py-2 hover:bg-slate-100">Eventos Conavi</a></li>
-                            <li><hr class="border-slate-200 my-1"></li>
-                            <li><a href="eventos.html" class="block px-4 py-2 hover:bg-slate-100">Eventos Varios</a></li>
-                            <li><a href="controlvehicular.html" class="block px-4 py-2 hover:bg-slate-100">Control Vehicular</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            color-scheme: light;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        summary {
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .dropdown-panel {
+            display: none;
+        }
+
+        details[open] .dropdown-panel {
+            display: block;
+        }
+
+        .institution-card {
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+
+        .institution-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(15, 39, 71, .10);
+            border-color: #bfdbfe;
+        }
+
+        .institution-card:focus-visible,
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid #60a5fa;
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans flex min-h-screen flex-col">
+
+    <!-- ENCABEZADO Y NAVEGACIÓN -->
+    <header class="sticky top-0 z-50 bg-[#102a4c] text-white shadow-lg">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+            <div class="flex min-h-[76px] flex-wrap items-center justify-between">
+
+                <!-- Identidad del sitio -->
+                <a href="index.html"
+                   class="flex items-center gap-3 py-3"
+                   aria-label="Bitácora P&D, página de inicio">
+
+                    <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500 shadow-md">
+                        <i class="fa-solid fa-book-open text-xl" aria-hidden="true"></i>
+                    </span>
+
+                    <span>
+                        <span class="block text-xl font-bold tracking-wide">BITÁCORA</span>
+                        <span class="block text-[10px] font-semibold tracking-[.22em] text-blue-200">
+                            P&amp;D · PANEL DE CONTROL
+                        </span>
+                    </span>
+                </a>
+
+                <!-- Botón para dispositivos móviles -->
+                <button id="menu-toggle"
+                        type="button"
+                        class="inline-flex h-11 w-11 items-center justify-center rounded-lg text-xl transition hover:bg-white/10 focus-visible:outline-none md:hidden"
+                        aria-label="Abrir menú de navegación"
+                        aria-controls="main-navigation"
+                        aria-expanded="false">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+
+                <!-- Menú principal -->
+                <nav id="main-navigation"
+                     aria-label="Navegación principal"
+                     class="hidden w-full pb-4 md:block md:w-auto md:pb-0">
+
+                    <ul class="flex flex-col gap-1 text-sm font-medium md:flex-row md:items-center md:gap-2">
+
+                        <li>
+                            <a href="index.html"
+                               aria-current="page"
+                               class="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-3 text-blue-200 md:py-3">
+                                <i class="fa-solid fa-house" aria-hidden="true"></i>
+                                Inicio
+                            </a>
+                        </li>
+
+                        <!-- Menú Ingresos -->
+                        <li>
+                            <details class="group relative">
+                                <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-lg px-4 py-3 transition hover:bg-white/10 hover:text-blue-200 md:justify-start">
+                                    <span class="flex items-center gap-2">
+                                        <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+                                        Ingresos
+                                    </span>
+                                    <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"
+                                       aria-hidden="true"></i>
+                                </summary>
+
+                                <ul class="dropdown-panel mt-1 overflow-hidden rounded-lg bg-white py-2 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
+                                    <li>
+                                        <a href="ingreso.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-building mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            RACSA
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="ingvarios.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-road mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            CONAVI &amp; Externo
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="seguridad.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-shield-halved mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            Seguridad privada
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
+
+                        <!-- Menú Eventos -->
+                        <li>
+                            <details class="group relative">
+                                <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-lg px-4 py-3 transition hover:bg-white/10 hover:text-blue-200 md:justify-start">
+                                    <span class="flex items-center gap-2">
+                                        <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                                        Eventos
+                                    </span>
+                                    <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"
+                                       aria-hidden="true"></i>
+                                </summary>
+
+                                <ul class="dropdown-panel mt-1 overflow-hidden rounded-lg bg-white py-2 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
+                                    <li>
+                                        <a href="conavi.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-road mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            Eventos CONAVI
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="eventos.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-list-check mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            Eventos varios
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="controlvehicular.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-car mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            Control vehicular
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
-        
-        <!-- AVISO IMPORTANTE -->
-        <section class="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg shadow-sm mb-8">
-            <div class="flex items-start gap-4">
-                <div class="text-amber-500 text-3xl">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
+    <main class="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+
+        <!-- Presentación -->
+        <section class="mb-8">
+            <p class="mb-2 text-xs font-bold uppercase tracking-[.18em] text-blue-700">
+                Sistema de gestión y registro
+            </p>
+            <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                Panel de control
+            </h1>
+            <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
+                Acceso centralizado a los módulos de trabajo y sistemas institucionales.
+            </p>
+        </section>
+
+        <!-- Aviso importante: se conserva el contenido operativo original -->
+        <section class="mb-10 overflow-hidden rounded-xl border border-amber-200 bg-white shadow-sm"
+                 aria-labelledby="notice-title">
+
+            <div class="flex flex-col sm:flex-row">
+                <div class="flex items-center justify-center bg-amber-500 px-6 py-5 text-white sm:px-8">
+                    <i class="fa-solid fa-triangle-exclamation text-3xl" aria-hidden="true"></i>
+                    <span class="sr-only">Aviso importante</span>
                 </div>
-                <div>
-                    <h2 class="text-xl font-bold text-amber-900 mb-2">Aviso Importante</h2>
-                    <p class="font-semibold text-amber-800 text-base mb-1">NOTAS GRUPO (D) 18:00 - 00:00</p>
-                    <p class="text-amber-900 mb-2">Recordar siempre modificar la hora de finalización para que se registre el tiempo de cada evento.</p>
-                    <div class="inline-block bg-amber-200 text-amber-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                        Únicamente Grupo D | Estación 1 | Esparza - SJO
+
+                <div class="flex-1 p-5 sm:p-6">
+                    <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+                        <h2 id="notice-title" class="text-xl font-bold text-amber-950">
+                            Aviso importante
+                        </h2>
+                        <span class="rounded-full bg-amber-100 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-amber-800">
+                            <i class="fa-solid fa-bell mr-1" aria-hidden="true"></i>
+                            Recordatorio
+                        </span>
+                    </div>
+
+                    <p class="mb-2 font-bold text-slate-800">
+                        NOTAS GRUPO (D) · 18:00 – 00:00
+                    </p>
+
+                    <p class="mb-4 max-w-3xl text-sm leading-6 text-slate-600 sm:text-base">
+                        Recordar siempre modificar la hora de finalización para que se registre correctamente el tiempo de cada evento.
+                    </p>
+
+                    <div class="flex flex-wrap gap-2">
+                        <span class="inline-flex items-center gap-2 rounded-md bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700">
+                            <i class="fa-solid fa-users text-blue-600" aria-hidden="true"></i>
+                            Únicamente Grupo D
+                        </span>
+                        <span class="inline-flex items-center gap-2 rounded-md bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700">
+                            <i class="fa-solid fa-location-dot text-blue-600" aria-hidden="true"></i>
+                            Estación 1
+                        </span>
+                        <span class="inline-flex items-center gap-2 rounded-md bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700">
+                            <i class="fa-solid fa-map-location-dot text-blue-600" aria-hidden="true"></i>
+                            Esparza - SJO
+                        </span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN DE LOGOS / INSTITUCIONES -->
-        <section class="bg-white rounded-xl shadow-sm p-6 border border-slate-200">
-            <h3 class="text-lg font-semibold text-slate-700 text-center mb-6">Sistemas y Accesos Institucionales</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-center">
-                <div class="p-4 bg-slate-50 rounded-lg flex justify-center items-center h-32 border border-slate-100 hover:shadow-md transition">
-                    <img alt="Racsa" src="img/racsa.png" class="max-h-20 object-contain">
-                </div>
-                <div class="p-4 bg-slate-50 rounded-lg flex justify-center items-center h-32 border border-slate-100 hover:shadow-md transition">
-                    <img alt="Conavi" src="img/conavi1.png" class="max-h-20 object-contain">
-                </div>
-                <div class="p-4 bg-slate-50 rounded-lg flex justify-center items-center h-32 border border-slate-100 hover:shadow-md transition">
-                    <img alt="Vialidad" src="img/vialidad.png" class="max-h-20 object-contain">
-                </div>
+        <!-- Accesos institucionales -->
+        <section aria-labelledby="systems-title">
+            <div class="mb-6 text-center">
+                <h2 id="systems-title" class="text-2xl font-bold text-slate-900">
+                    Sistemas y accesos institucionales
+                </h2>
+                <p class="mt-2 text-sm text-slate-500">
+                    Referencias visuales de las instituciones relacionadas con las actividades.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+                <!-- RACSA -->
+                <article class="institution-card rounded-xl border border-slate-200 bg-white p-6">
+                    <div class="flex h-28 items-center justify-center">
+                        <img src="img/racsa.png"
+                             alt="Logotipo de RACSA"
+                             loading="lazy"
+                             decoding="async"
+                             class="max-h-24 max-w-full object-contain">
+                    </div>
+                    <div class="mt-4 border-t border-slate-100 pt-4 text-center">
+                        <h3 class="font-bold text-slate-800">RACSA</h3>
+                        <p class="mt-1 text-xs text-slate-500">Radiográfica Costarricense</p>
+                    </div>
+                </article>
+
+                <!-- CONAVI -->
+                <article class="institution-card rounded-xl border border-slate-200 bg-white p-6">
+                    <div class="flex h-28 items-center justify-center">
+                        <img src="img/conavi1.png"
+                             alt="Logotipo de CONAVI"
+                             loading="lazy"
+                             decoding="async"
+                             class="max-h-24 max-w-full object-contain">
+                    </div>
+                    <div class="mt-4 border-t border-slate-100 pt-4 text-center">
+                        <h3 class="font-bold text-slate-800">CONAVI</h3>
+                        <p class="mt-1 text-xs text-slate-500">Consejo Nacional de Vialidad</p>
+                    </div>
+                </article>
+
+                <!-- Vialidad -->
+                <article class="institution-card rounded-xl border border-slate-200 bg-white p-6">
+                    <div class="flex h-28 items-center justify-center">
+                        <img src="img/vialidad.png"
+                             alt="Logotipo de Vialidad"
+                             loading="lazy"
+                             decoding="async"
+                             class="max-h-24 max-w-full object-contain">
+                    </div>
+                    <div class="mt-4 border-t border-slate-100 pt-4 text-center">
+                        <h3 class="font-bold text-slate-800">Vialidad</h3>
+                        <p class="mt-1 text-xs text-slate-500">Referencia institucional</p>
+                    </div>
+                </article>
+
             </div>
         </section>
-
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-white border-t border-slate-200 py-6 text-center text-slate-500 text-sm mt-12">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>&copy; <span id="current-year"></span> Bitácora. Todos los derechos reservados.</p>
+    <!-- PIE DE PÁGINA -->
+    <footer class="mt-10 bg-[#102a4c] py-6 text-center text-slate-300">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mb-2 flex items-center justify-center gap-2 text-white">
+                <i class="fa-solid fa-book-open text-blue-300" aria-hidden="true"></i>
+                <span class="font-bold tracking-wider">BITÁCORA P&amp;D</span>
+            </div>
+            <p class="text-xs sm:text-sm">
+                &copy; <span id="current-year"></span> Bitácora. Todos los derechos reservados.
+            </p>
+            <p class="mt-2 text-xs text-slate-400">
+                Sistema de registro y control de actividades.
+            </p>
         </div>
     </footer>
 
-    <!-- Script sencillo para actualizar el año automáticamente -->
+    <!-- Funciones de navegación -->
     <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        (() => {
+            const menuToggle = document.getElementById("menu-toggle");
+            const navigation = document.getElementById("main-navigation");
+            const year = document.getElementById("current-year");
+
+            // Año automático
+            year.textContent = new Date().getFullYear();
+
+            // Abrir y cerrar el menú en pantallas pequeñas
+            menuToggle.addEventListener("click", () => {
+                const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+
+                menuToggle.setAttribute("aria-expanded", String(!isExpanded));
+                navigation.classList.toggle("hidden", isExpanded);
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    isExpanded ? "Abrir menú de navegación" : "Cerrar menú de navegación"
+                );
+
+                menuToggle.innerHTML = isExpanded
+                    ? '<i class="fa-solid fa-bars" aria-hidden="true"></i>'
+                    : '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+            });
+
+            // Cerrar el menú móvil al seleccionar un enlace
+            navigation.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    if (window.innerWidth < 768) {
+                        navigation.classList.add("hidden");
+                        menuToggle.setAttribute("aria-expanded", "false");
+                        menuToggle.setAttribute("aria-label", "Abrir menú de navegación");
+                        menuToggle.innerHTML =
+                            '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+                    }
+                });
+            });
+
+            // Restablecer el menú al cambiar el tamaño de pantalla
+            window.addEventListener("resize", () => {
+                if (window.innerWidth >= 768) {
+                    navigation.classList.remove("hidden");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Abrir menú de navegación");
+                    menuToggle.innerHTML =
+                        '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+                } else if (menuToggle.getAttribute("aria-expanded") !== "true") {
+                    navigation.classList.add("hidden");
+                }
+            });
+        })();
     </script>
+
 </body>
 </html>
