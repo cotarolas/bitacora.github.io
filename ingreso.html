@@ -22,395 +22,69 @@
   };
 </script>
 <script src="https://cdn.tailwindcss.com"></script>
+  
   <style>
-    :root {
-      --navy: #102a4c;
-      --navy-soft: #183b65;
-      --blue: #2563eb;
-      --background: #f3f6fa;
-      --text: #263445;
-    }
-
-    body {
-      background: var(--background);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    /* Navegación */
-    
-    .navbar-brand small {
-      display: block;
-      font-size: .68rem;
-      font-weight: 400;
-      letter-spacing: 1.5px;
-      color: #cbd5e1;
-    }
-
-    .navbar .nav-link:hover,
-    .navbar .nav-link.active {
-      color: #fff !important;
-    }
-
-    .navbar .dropdown-menu {
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 5px 18px rgba(0,0,0,.15);
-    }
-
-    /* Contenido */
-    .main-container {
-      max-width: 1050px;
-      margin: 35px auto;
-      padding: 0 15px;
-    }
-
-    .page-header {
-      background: linear-gradient(135deg, var(--navy), var(--navy-soft));
-      color: white;
-      border-radius: 14px;
-      padding: 30px 20px;
-      margin-bottom: 25px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(16,42,76,.15);
-    }
-
-    .page-header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .page-header .schedule {
-      color: #dbeafe;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .page-header .notice {
-      font-size: .95rem;
-      margin-bottom: 15px;
-    }
-
-    .station-label {
-      display: inline-block;
-      background: #fff;
-      color: var(--navy);
-      border-radius: 30px;
-      padding: 9px 18px;
-      font-size: .9rem;
-      font-weight: 700;
-    }
-
-    /* Tarjetas */
-    .section-card {
-      background: #fff;
-      border: 1px solid #e1e8f0;
-      border-radius: 12px;
-      padding: 22px;
-      margin-bottom: 22px;
-      box-shadow: 0 3px 12px rgba(15, 23, 42, .05);
-    }
-
-    .section-title {
-      color: var(--navy);
-      font-size: 1.15rem;
-      font-weight: 700;
-      border-bottom: 2px solid #e8eef6;
-      padding-bottom: 12px;
-      margin-bottom: 18px;
-    }
-
-    .section-title i {
-      color: var(--blue);
-      margin-right: 8px;
-    }
-
-    .reference-code {
-      display: inline-block;
-      background: #eaf1ff;
-      color: #1d4ed8;
-      border-radius: 6px;
-      padding: 3px 9px;
-      font-size: .82rem;
-      font-weight: 700;
-      margin-left: 5px;
-    }
-
-    /* Grupos */
-    .day-title {
-      color: var(--navy);
-      font-size: .95rem;
-      font-weight: 700;
-      margin: 22px 0 10px;
-      padding-left: 10px;
-      border-left: 4px solid var(--blue);
-    }
-
-    .record-list {
-      padding-left: 0;
-      margin-bottom: 20px;
-      list-style: none;
-      counter-reset: record;
-    }
-
-    .record-list li {
-      position: relative;
-      background: #f8fafc;
-      border: 1px solid #e5eaf1;
-      border-radius: 9px;
-      padding: 15px 15px 15px 48px;
-      margin-bottom: 10px;
-      line-height: 1.6;
-      font-size: .92rem;
-      counter-increment: record;
-    }
-
-    .record-list li::before {
-      content: counter(record);
-      position: absolute;
-      left: 13px;
-      top: 14px;
-      width: 25px;
-      height: 25px;
-      background: var(--navy);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .8rem;
-      font-weight: 700;
-    }
-
-    /* Administrativos y alimentación */
-    .simple-record {
-      background: #f8fafc;
-      border-left: 4px solid var(--blue);
-      padding: 15px;
-      border-radius: 7px;
-      line-height: 1.6;
-      margin-bottom: 10px;
-    }
-
-    .meal-card {
-      background: #fff;
-      border: 1px solid #e1e8f0;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 22px;
-      box-shadow: 0 3px 12px rgba(15, 23, 42, .05);
-    }
-
-    .meal-card h2 {
-      color: var(--navy);
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-    .meal-card p {
-      background: #f8fafc;
-      border-radius: 7px;
-      padding: 13px;
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-    /* Pie de página */
-    footer {
-      background: var(--navy);
-      color: #dbeafe;
-      text-align: center;
-      padding: 18px 10px;
-      margin-top: 40px;
-      font-size: .85rem;
-    }
-
-    @media (max-width: 576px) {
-      .main-container {
-        margin-top: 20px;
+      /* ========================================
+         NAVEGACIÓN PRINCIPAL BITÁCORA P&D
+      ======================================== */
+      
+      summary {
+        list-style: none;
+        cursor: pointer;
       }
-
-      .page-header {
-        padding: 24px 15px;
+      
+      summary::-webkit-details-marker {
+        display: none;
       }
-
-      .page-header h1 {
-        font-size: 1.4rem;
+      
+      .dropdown-panel {
+        display: none;
       }
-
-      .station-label {
-        font-size: .78rem;
+      
+      details[open] .dropdown-panel {
+        display: block;
       }
-
-      .section-card {
-        padding: 16px;
+      
+      /* Enlaces de navegación */
+      .nav-link {
+        transition: background-color 0.2s ease, color 0.2s ease;
       }
-
-      .record-list li {
-        font-size: .85rem;
+      
+      /* Elemento activo */
+      .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.10);
+        color: #bfdbfe;
       }
-    }
-    
-/* BUSCADOR GLOBAL */
-.busqueda-global {
-  background: #ffffff;
-  padding: 18px 15px;
-  border-bottom: 1px solid #e5eaf1;
-}
-
-.busqueda-contenedor {
-  max-width: 1050px;
-  margin: 0 auto;
-}
-
-.busqueda-campo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #f3f6fa;
-  border: 1px solid #dbe3ed;
-  border-radius: 12px;
-  padding: 6px 8px 6px 15px;
-}
-
-.busqueda-campo > i {
-  color: #2563eb;
-  font-size: 1.1rem;
-}
-
-.busqueda-campo input {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 10px 0;
-  color: #263445;
-  font-size: .95rem;
-}
-
-.busqueda-campo input:focus {
-  outline: none;
-}
-
-.busqueda-campo button {
-  border: none;
-  border-radius: 8px;
-  background: #102a4c;
-  color: white;
-  padding: 10px 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .2s ease;
-}
-
-.busqueda-campo button:hover {
-  background: #2563eb;
-}
-
-.busqueda-resultados {
-  display: grid;
-  gap: 10px;
-}
-
-.busqueda-contador,
-.busqueda-mensaje {
-  margin: 14px 0 5px;
-  color: #475569;
-  font-size: .9rem;
-}
-
-.busqueda-resultado {
-  background: #f8fafc;
-  border: 1px solid #e1e8f0;
-  border-left: 4px solid #2563eb;
-  border-radius: 9px;
-  padding: 14px 16px;
-}
-
-.busqueda-resultado h3 {
-  color: #102a4c;
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 0 0 7px;
-}
-
-.busqueda-resultado p {
-  color: #475569;
-  font-size: .9rem;
-  line-height: 1.5;
-  margin: 0 0 8px;
-}
-
-.busqueda-resultado a {
-  color: #1d4ed8;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.busqueda-resultado a:hover {
-  text-decoration: underline;
-}
-
-.busqueda-coincidencia {
-  outline: 3px solid #60a5fa !important;
-  outline-offset: 4px;
-  border-radius: 8px;
-  background-color: #eff6ff !important;
-}
-
-@media (max-width: 576px) {
-  .busqueda-global {
-    padding: 12px;
-  }
-
-  .busqueda-campo {
-    gap: 8px;
-    padding-left: 10px;
-  }
-
-  .busqueda-campo input {
-    font-size: .85rem;
-  }
-
-  .busqueda-campo button {
-    padding: 10px 13px;
-  }
-}
-    /* NAVEGACIÓN UNIFICADA */
-summary {
-  list-style: none;
-  cursor: pointer;
-}
-
-summary::-webkit-details-marker {
-  display: none;
-}
-
-.dropdown-panel {
-  display: none;
-}
-
-details[open] .dropdown-panel {
-  display: block;
-}
-
-#main-navigation {
-  flex-shrink: 0;
-}
-
-@media (max-width: 767px) {
-  #main-navigation {
-    width: 100%;
-  }
-
-  #main-navigation .dropdown-panel {
-    margin-left: 12px;
-  }
-}
-
+      
+      /* Submenús */
+      .dropdown-panel a {
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+      
+      /* Accesibilidad */
+      .nav-link:focus-visible,
+      .dropdown-panel a:focus-visible {
+        outline: 2px solid #93c5fd;
+        outline-offset: 2px;
+      }
+      
+      /* Menú en dispositivos móviles */
+      @media (max-width: 767px) {
+        #main-navigation {
+          width: 100%;
+        }
+      
+        #main-navigation .dropdown-panel {
+          margin-left: 12px;
+        }
+      }
+      
+      @media (prefers-reduced-motion: reduce) {
+        .nav-link,
+        .dropdown-panel a {
+          transition: none;
+        }
+      }
   </style>
 </head>
 
@@ -420,41 +94,42 @@ details[open] .dropdown-panel {
   
 
 <!-- ENCABEZADO Y NAVEGACIÓN -->
+
 <header class="sticky top-0 z-50 bg-[#102a4c] text-white shadow-lg">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
     <div class="flex min-h-[76px] flex-wrap items-center justify-between">
 
-      <!-- Identidad del sitio -->
+      <!-- Marca -->
       <a href="index.html"
-         class="flex items-center gap-3 py-3 text-white no-underline"
-         aria-label="Bitácora P&D, página de inicio">
+         class="flex items-center gap-3 py-3 text-white no-underline">
 
-        <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500 shadow-md">
-          <i class="fa-solid fa-book-open text-xl" aria-hidden="true"></i>
-        </span>
+        <i class="fa-solid fa-book-open text-3xl text-blue-300"></i>
 
-        <span>
-          <span class="block text-xl font-bold tracking-wide">BITÁCORA</span>
-          <span class="block text-[10px] font-semibold tracking-[.22em] text-blue-200">
-            P&amp;D · PANEL DE CONTROL
+        <span class="flex flex-col">
+          <span class="text-xl font-bold tracking-wide leading-tight">
+            BITÁCORA
+          </span>
+          <span class="text-xs font-medium tracking-widest text-blue-200">
+            P&D · PANEL DE CONTROL
           </span>
         </span>
       </a>
 
-      <!-- Botón para dispositivos móviles -->
-      <button id="menu-toggle"
-              type="button"
-              class="inline-flex h-11 w-11 items-center justify-center rounded-lg text-xl transition hover:bg-white/10 focus-visible:outline-none md:hidden"
-              aria-label="Abrir menú de navegación"
-              aria-controls="main-navigation"
-              aria-expanded="false">
-        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      <!-- Botón menú móvil -->
+      <button
+        id="menu-toggle"
+        type="button"
+        class="rounded-lg p-2 text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-300 md:hidden"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="main-navigation">
+
+        <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
       </button>
 
-      <!-- Menú principal -->
+      <!-- Navegación -->
       <nav id="main-navigation"
-           aria-label="Navegación principal"
            class="hidden w-full pb-4 md:block md:w-auto md:pb-0">
 
         <ul class="mb-0 flex list-none flex-col gap-1 p-0 text-sm font-medium md:flex-row md:items-center md:gap-2">
@@ -462,52 +137,54 @@ details[open] .dropdown-panel {
           <!-- Inicio -->
           <li>
             <a href="index.html"
-               class="flex items-center gap-2 rounded-lg px-4 py-3 text-white no-underline transition hover:bg-white/10 hover:text-blue-200">
-              <i class="fa-solid fa-house" aria-hidden="true"></i>
+               class="nav-link active flex items-center gap-2 rounded-lg px-4 py-3 text-white no-underline" aria-current="page" hover:bg-white/10 hover:text-blue-200">
+              <i class="fa-solid fa-house"></i>
               Inicio
             </a>
           </li>
 
-          <!-- Menú Ingresos -->
+          <!-- Ingresos -->
           <li>
             <details class="group relative">
 
-              <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-lg bg-white/10 px-4 py-3 text-blue-200 transition md:justify-start">
-                <span class="flex items-center gap-2">
-                  <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
-                  Ingresos
-                </span>
-                <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"
-                   aria-hidden="true"></i>
+              <summary
+                class="nav-link flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
+                <i class="fa-solid fa-clipboard-list"></i>
+                Ingresos
+                <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
               </summary>
 
               <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
 
                 <li>
                   <a href="ingreso.html"
-                     aria-current="page"
-                     class="block bg-blue-50 px-4 py-3 font-semibold text-blue-700 no-underline">
-                    <i class="fa-solid fa-building mr-2 w-4 text-blue-500"
-                       aria-hidden="true"></i>
-                    RACSA
+                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+                    <i class="fa-solid fa-users mr-2"></i>
+                    Ingreso RACSA
                   </a>
                 </li>
 
                 <li>
                   <a href="ingvarios.html"
-                     class="block px-4 py-3 text-slate-700 no-underline transition hover:bg-blue-50 hover:text-blue-700">
-                    <i class="fa-solid fa-road mr-2 w-4 text-blue-500"
-                       aria-hidden="true"></i>
-                    CONAVI &amp; Externo
+                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+                    <i class="fa-solid fa-user-group mr-2"></i>
+                    Ingresos varios
                   </a>
                 </li>
 
                 <li>
                   <a href="seguridad.html"
-                     class="block px-4 py-3 text-slate-700 no-underline transition hover:bg-blue-50 hover:text-blue-700">
-                    <i class="fa-solid fa-shield-halved mr-2 w-4 text-blue-500"
-                       aria-hidden="true"></i>
-                    Seguridad privada
+                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+                    <i class="fa-solid fa-shield-halved mr-2"></i>
+                    Seguridad
+                  </a>
+                </li>
+
+                <li>
+                  <a href="conavi.html"
+                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+                    <i class="fa-solid fa-road mr-2"></i>
+                    CONAVI
                   </a>
                 </li>
 
@@ -515,44 +192,31 @@ details[open] .dropdown-panel {
             </details>
           </li>
 
-          <!-- Menú Eventos -->
+          <!-- Eventos -->
           <li>
             <details class="group relative">
 
-              <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-lg px-4 py-3 transition hover:bg-white/10 hover:text-blue-200 md:justify-start">
-                <span class="flex items-center gap-2">
-                  <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
-                  Eventos
-                </span>
-                <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"
-                   aria-hidden="true"></i>
+              <summary
+                class="nav-link flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
+                <i class="fa-solid fa-calendar-days"></i>
+                Eventos
+                <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
               </summary>
 
               <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
 
                 <li>
-                  <a href="conavi.html"
-                     class="block px-4 py-3 text-slate-700 no-underline transition hover:bg-blue-50 hover:text-blue-700">
-                    <i class="fa-solid fa-road mr-2 w-4 text-blue-500"
-                       aria-hidden="true"></i>
-                    Eventos CONAVI
-                  </a>
-                </li>
-
-                <li>
                   <a href="eventos.html"
-                     class="block px-4 py-3 text-slate-700 no-underline transition hover:bg-blue-50 hover:text-blue-700">
-                    <i class="fa-solid fa-list-check mr-2 w-4 text-blue-500"
-                       aria-hidden="true"></i>
-                    Eventos varios
+                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+                    <i class="fa-solid fa-calendar-check mr-2"></i>
+                    Eventos
                   </a>
                 </li>
 
                 <li>
                   <a href="controlvehicular.html"
-                     class="block px-4 py-3 text-slate-700 no-underline transition hover:bg-blue-50 hover:text-blue-700">
-                    <i class="fa-solid fa-car mr-2 w-4 text-blue-500"
-                       aria-hidden="true"></i>
+                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+                    <i class="fa-solid fa-car mr-2"></i>
                     Control vehicular
                   </a>
                 </li>
@@ -563,6 +227,7 @@ details[open] .dropdown-panel {
 
         </ul>
       </nav>
+
     </div>
   </div>
 </header>
