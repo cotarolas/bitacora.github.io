@@ -147,21 +147,27 @@
           <li>
             <details class="group relative">
 
+              
               <summary
-                class="nav-link flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
+                class="nav-link active flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200"
+                aria-current="page">
                 <i class="fa-solid fa-clipboard-list"></i>
                 Ingresos
                 <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
               </summary>
 
+
               <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
 
                 <li>
+                  
                   <a href="ingreso.html"
-                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+                     class="active block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700"
+                     aria-current="page">
                     <i class="fa-solid fa-users mr-2"></i>
                     Ingreso RACSA
                   </a>
+
                 </li>
 
                 <li>
@@ -433,22 +439,70 @@
   if (!menuToggle || !navigation) return;
 
   // Abrir y cerrar el menú móvil
-  menuToggle.addEventListener("click", () => {
+ 
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.getElementById("menu-toggle");
+  const navigation = document.getElementById("main-navigation");
+  const menuIcon = document.getElementById("menu-icon");
+
+  if (!menuToggle || !navigation) return;
+
+  function closeMenu() {
+    navigation.classList.add("hidden");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menú");
+
+    if (menuIcon) {
+      menuIcon.classList.remove("fa-xmark");
+      menuIcon.classList.add("fa-bars");
+    }
+  }
+
+  function openMenu() {
+    navigation.classList.remove("hidden");
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Cerrar menú");
+
+    if (menuIcon) {
+      menuIcon.classList.remove("fa-bars");
+      menuIcon.classList.add("fa-xmark");
+    }
+  }
+
+  menuToggle.addEventListener("click", function () {
     const isExpanded =
       menuToggle.getAttribute("aria-expanded") === "true";
 
-    menuToggle.setAttribute("aria-expanded", String(!isExpanded));
-    navigation.classList.toggle("hidden", isExpanded);
-
-    menuToggle.setAttribute(
-      "aria-label",
-      isExpanded ? "Abrir menú de navegación" : "Cerrar menú de navegación"
-    );
-
-    menuToggle.innerHTML = isExpanded
-      ? '<i class="fa-solid fa-bars" aria-hidden="true"></i>'
-      : '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+    if (isExpanded) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
+
+  navigation.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      if (window.innerWidth < 768) {
+        closeMenu();
+      }
+    });
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth >= 768) {
+      navigation.classList.remove("hidden");
+      menuToggle.setAttribute("aria-expanded", "false");
+
+      if (menuIcon) {
+        menuIcon.classList.remove("fa-xmark");
+        menuIcon.classList.add("fa-bars");
+      }
+    } else {
+      closeMenu();
+    }
+  });
+});
+
 
   // Cerrar el menú al seleccionar un enlace en móviles
   navigation.querySelectorAll("a").forEach((link) => {
