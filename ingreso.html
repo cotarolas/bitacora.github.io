@@ -1,359 +1,662 @@
+
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>BITÁCORA GRUPO D | P&D ESPARZA</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+  <!-- Bootstrap 5.1.3: estilos del contenido -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Tailwind CSS para la navegación -->
-<script>
-  tailwind.config = {
-    corePlugins: {
-      preflight: false
-    }
-  };
-</script>
-<script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6.4.0 -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <!-- Tailwind CSS sin Preflight para proteger Bootstrap -->
-<script>
-  tailwind.config = {
-    corePlugins: {
-      preflight: false
-    }
-  };
-</script>
-<script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-      /* ========================================
-         NAVEGACIÓN PRINCIPAL BITÁCORA P&D
-      ======================================== */
-      
-      summary {
-        list-style: none;
-        cursor: pointer;
+    /* ========================================
+       VARIABLES GENERALES
+    ======================================== */
+
+    :root {
+      --navy: #102a4c;
+      --navy-soft: #183b65;
+      --blue: #2563eb;
+      --background: #f3f6fa;
+      --text: #263445;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+    }
+
+
+    /* ========================================
+       NAVEGACIÓN PRINCIPAL BITÁCORA P&D
+    ======================================== */
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .dropdown-panel {
+      display: none;
+    }
+
+    details[open] .dropdown-panel {
+      display: block;
+    }
+
+    .nav-link {
+      transition:
+        background-color .2s ease,
+        color .2s ease;
+    }
+
+    .nav-link.active {
+      background-color: rgba(255, 255, 255, .10);
+      color: #bfdbfe;
+    }
+
+    .dropdown-panel a {
+      transition:
+        background-color .2s ease,
+        color .2s ease;
+    }
+
+    .dropdown-panel a.active {
+      background-color: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 700;
+    }
+
+    .nav-link:focus-visible,
+    .dropdown-panel a:focus-visible {
+      outline: 2px solid #93c5fd;
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 767px) {
+      #main-navigation {
+        width: 100%;
       }
-      
-      summary::-webkit-details-marker {
-        display: none;
+
+      #main-navigation .dropdown-panel {
+        margin-left: 12px;
       }
-      
-      .dropdown-panel {
-        display: none;
+    }
+
+
+    /* ========================================
+       BUSCADOR GLOBAL
+    ======================================== */
+
+    .busqueda-global {
+      max-width: 1050px;
+      margin: 22px auto 0;
+      padding: 0 15px;
+    }
+
+    .busqueda-contenedor {
+      background: #fff;
+      border: 1px solid #e1e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, .05);
+    }
+
+    .busqueda-titulo {
+      color: var(--navy);
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .busqueda-campo {
+      display: flex;
+      gap: 8px;
+    }
+
+    .busqueda-campo input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 11px 13px;
+      font-size: .95rem;
+      outline: none;
+    }
+
+    .busqueda-campo input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+    }
+
+    .busqueda-campo button {
+      border: none;
+      border-radius: 8px;
+      background: var(--navy);
+      color: #fff;
+      padding: 10px 17px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .busqueda-campo button:hover {
+      background: var(--navy-soft);
+    }
+
+    #busqueda-resultados {
+      margin-top: 12px;
+    }
+
+    @media (max-width: 576px) {
+      .busqueda-campo {
+        flex-direction: column;
       }
-      
-      details[open] .dropdown-panel {
-        display: block;
+
+      .busqueda-campo button {
+        width: 100%;
       }
-      
-      /* Enlaces de navegación */
-     
-/* ========================================
-   NAVEGACIÓN PRINCIPAL BITÁCORA P&D
-======================================== */
+    }
 
-summary {
-  list-style: none;
-  cursor: pointer;
-}
 
-summary::-webkit-details-marker {
-  display: none;
-}
+    /* ========================================
+       CONTENIDO PRINCIPAL
+    ======================================== */
 
-.dropdown-panel {
-  display: none;
-}
+    .main-container {
+      max-width: 1050px;
+      margin: 35px auto;
+      padding: 0 15px;
+    }
 
-details[open] .dropdown-panel {
-  display: block;
-}
+    .page-header {
+      background: linear-gradient(
+        135deg,
+        var(--navy),
+        var(--navy-soft)
+      );
+      color: white;
+      border-radius: 14px;
+      padding: 30px 20px;
+      margin-bottom: 25px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(16, 42, 76, .15);
+    }
 
-.nav-link {
-  transition: background-color .2s ease, color .2s ease;
-}
+    .page-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
 
-.nav-link.active {
-  background-color: rgba(255,255,255,.10);
-  color: #bfdbfe;
-}
+    .page-header .schedule {
+      color: #dbeafe;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
 
-.dropdown-panel a {
-  transition: background-color .2s ease, color .2s ease;
-}
+    .page-header .notice {
+      font-size: .95rem;
+      margin-bottom: 15px;
+    }
 
-.dropdown-panel a.active {
-  background-color: #eff6ff;
-  color: #1d4ed8;
-  font-weight: 700;
-}
+    .station-label {
+      display: inline-block;
+      background: #fff;
+      color: var(--navy);
+      border-radius: 30px;
+      padding: 9px 18px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
 
-.nav-link:focus-visible,
-.dropdown-panel a:focus-visible {
-  outline: 2px solid #93c5fd;
-  outline-offset: 2px;
-}
 
-@media (max-width: 767px) {
-  #main-navigation {
-    width: 100%;
-  }
+    /* ========================================
+       TARJETAS Y SECCIONES
+    ======================================== */
 
-  #main-navigation .dropdown-panel {
-    margin-left: 12px;
-  }
-}
+    .section-card {
+      background: #fff;
+      border: 1px solid #e1e8f0;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, .05);
+    }
 
-@media (prefers-reduced-motion: reduce) {
-  .nav-link,
-  .dropdown-panel a {
-    transition: none;
-  }
-}
+    .section-title {
+      color: var(--navy);
+      font-size: 1.15rem;
+      font-weight: 700;
+      border-bottom: 2px solid #e8eef6;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
 
-      
-      /* Submenús */
+    .section-title i {
+      color: var(--blue);
+      margin-right: 8px;
+    }
+
+    .reference-code {
+      display: inline-block;
+      background: #eaf1ff;
+      color: #1d4ed8;
+      border-radius: 6px;
+      padding: 3px 9px;
+      font-size: .82rem;
+      font-weight: 700;
+      margin-left: 5px;
+    }
+
+
+    /* ========================================
+       GRUPOS Y REGISTROS
+    ======================================== */
+
+    .day-title {
+      color: var(--navy);
+      font-size: .95rem;
+      font-weight: 700;
+      margin: 22px 0 10px;
+      padding-left: 10px;
+      border-left: 4px solid var(--blue);
+    }
+
+    .record-list {
+      padding-left: 0;
+      margin-bottom: 20px;
+      list-style: none;
+      counter-reset: record;
+    }
+
+    .record-list li {
+      position: relative;
+      background: #f8fafc;
+      border: 1px solid #e5eaf1;
+      border-radius: 9px;
+      padding: 15px 15px 15px 48px;
+      margin-bottom: 10px;
+      line-height: 1.6;
+      font-size: .92rem;
+      counter-increment: record;
+    }
+
+    .record-list li::before {
+      content: counter(record);
+      position: absolute;
+      left: 13px;
+      top: 14px;
+      width: 25px;
+      height: 25px;
+      background: var(--navy);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+
+    /* ========================================
+       ADMINISTRATIVOS Y ALIMENTACIÓN
+    ======================================== */
+
+    .simple-record {
+      background: #f8fafc;
+      border-left: 4px solid var(--blue);
+      padding: 15px;
+      border-radius: 7px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .meal-card {
+      background: #fff;
+      border: 1px solid #e1e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 22px;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, .05);
+    }
+
+    .meal-card h2 {
+      color: var(--navy);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .meal-card p {
+      background: #f8fafc;
+      border-radius: 7px;
+      padding: 13px;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+
+    /* ========================================
+       PIE DE PÁGINA
+    ======================================== */
+
+    footer {
+      background: var(--navy);
+      color: #dbeafe;
+      text-align: center;
+      padding: 18px 10px;
+      margin-top: 40px;
+      font-size: .85rem;
+    }
+
+
+    /* ========================================
+       ADAPTACIÓN A DISPOSITIVOS MÓVILES
+    ======================================== */
+
+    @media (max-width: 576px) {
+
+      .main-container {
+        margin-top: 20px;
+      }
+
+      .page-header {
+        padding: 24px 15px;
+      }
+
+      .page-header h1 {
+        font-size: 1.4rem;
+      }
+
+      .station-label {
+        font-size: .78rem;
+      }
+
+      .section-card {
+        padding: 16px;
+      }
+
+      .record-list li {
+        font-size: .85rem;
+      }
+    }
+
+
+    /* ========================================
+       ACCESIBILIDAD
+    ======================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-link,
       .dropdown-panel a {
-        transition: background-color 0.2s ease, color 0.2s ease;
+        transition: none;
       }
-      
-      /* Accesibilidad */
-      .nav-link:focus-visible,
-      .dropdown-panel a:focus-visible {
-        outline: 2px solid #93c5fd;
-        outline-offset: 2px;
-      }
-      
-      /* Menú en dispositivos móviles */
-      @media (max-width: 767px) {
-        #main-navigation {
-          width: 100%;
-        }
-      
-        #main-navigation .dropdown-panel {
-          margin-left: 12px;
-        }
-      }
-      
-      @media (prefers-reduced-motion: reduce) {
-        .nav-link,
-        .dropdown-panel a {
-          transition: none;
-        }
-      }
+    }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- Menú principal -->
-  
+  <!-- ======================================
+       MENÚ PRINCIPAL BITÁCORA P&D
+  ======================================= -->
 
-<!-- ENCABEZADO Y NAVEGACIÓN -->
+  <header class="sticky top-0 z-50 bg-[#102a4c] text-white shadow-lg">
 
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-<!-- MENÚ PRINCIPAL BITÁCORA P&D -->
-<header class="sticky top-0 z-50 bg-[#102a4c] text-white shadow-lg">
+      <div class="flex min-h-[76px] flex-wrap items-center justify-between">
 
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <!-- Marca -->
+        <a href="index.html"
+           class="flex items-center gap-3 py-3 text-white no-underline">
 
-    <div class="flex min-h-[76px] flex-wrap items-center justify-between">
+          <i class="fa-solid fa-book-open text-3xl text-blue-300"></i>
 
-      <!-- Marca -->
-      <a href="index.html"
-         class="flex items-center gap-3 py-3 text-white no-underline">
+          <span class="flex flex-col">
 
-        <i class="fa-solid fa-book-open text-3xl text-blue-300"></i>
+            <span class="text-xl font-bold tracking-wide leading-tight">
+              BITÁCORA
+            </span>
 
-        <span class="flex flex-col">
-          <span class="text-xl font-bold tracking-wide leading-tight">
-            BITÁCORA
+            <span class="text-xs font-medium tracking-widest text-blue-200">
+              P&D · PANEL DE CONTROL
+            </span>
+
           </span>
-
-          <span class="text-xs font-medium tracking-widest text-blue-200">
-            P&D · PANEL DE CONTROL
-          </span>
-        </span>
-
-      </a>
-
-      <!-- Botón móvil -->
-      <button
-        id="menu-toggle"
-        type="button"
-        class="rounded-lg p-2 text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-300 md:hidden"
-        aria-label="Abrir menú"
-        aria-expanded="false"
-        aria-controls="main-navigation">
-
-        <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
-
-      </button>
-
-      <!-- Navegación -->
-      <nav id="main-navigation"
-           class="hidden w-full pb-4 md:block md:w-auto md:pb-0">
-
-        <ul class="mb-0 flex list-none flex-col gap-1 p-0 text-sm font-medium md:flex-row md:items-center md:gap-2">
-
-          <!-- Inicio -->
-          <li>
-            <a href="index.html"
-               class="nav-link flex items-center gap-2 rounded-lg px-4 py-3 text-white no-underline hover:bg-white/10 hover:text-blue-200">
-
-              <i class="fa-solid fa-house"></i>
-              Inicio
-
-            </a>
-          </li>
-
-          <!-- Ingresos -->
-          <li>
-            <details class="group relative">
-
-              <summary
-                class="nav-link active flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
-
-                <i class="fa-solid fa-clipboard-list"></i>
-                Ingresos
-
-                <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
-
-              </summary>
-
-              <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
-
-                <li>
-                  <a href="ingreso.html"
-                     class="active block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700"
-                     aria-current="page">
-
-                    <i class="fa-solid fa-users mr-2"></i>
-                    Ingreso RACSA
-
-                  </a>
-                </li>
-
-                <li>
-                  <a href="ingvarios.html"
-                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
-
-                    <i class="fa-solid fa-user-group mr-2"></i>
-                    Ingresos varios
-
-                  </a>
-                </li>
-
-                <li>
-                  <a href="seguridad.html"
-                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
-
-                    <i class="fa-solid fa-shield-halved mr-2"></i>
-                    Seguridad
-
-                  </a>
-                </li>
-
-                <li>
-                  <a href="conavi.html"
-                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
-
-                    <i class="fa-solid fa-road mr-2"></i>
-                    CONAVI
-
-                  </a>
-                </li>
-
-              </ul>
-
-            </details>
-          </li>
-
-          <!-- Eventos -->
-          <li>
-            <details class="group relative">
-
-              <summary
-                class="nav-link flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
-
-                <i class="fa-solid fa-calendar-days"></i>
-                Eventos
-
-                <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
-
-              </summary>
-
-              <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
-
-                <li>
-                  <a href="eventos.html"
-                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
-
-                    <i class="fa-solid fa-calendar-check mr-2"></i>
-                    Eventos
-
-                  </a>
-                </li>
-
-                <li>
-                  <a href="controlvehicular.html"
-                     class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
-
-                    <i class="fa-solid fa-car mr-2"></i>
-                    Control vehicular
-
-                  </a>
-                </li>
-
-              </ul>
-
-            </details>
-          </li>
-
-        </ul>
-      </nav>
-
-    </div>
-  </div>
-</header>
+        </a>
 
 
-<!-- BUSCADOR GLOBAL BITÁCORA P&D -->
-<section class="busqueda-global" aria-label="Buscador global">
-  <div class="busqueda-contenedor">
+        <!-- Botón menú móvil -->
+        <button
+          id="menu-toggle"
+          type="button"
+          class="rounded-lg p-2 text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-300 md:hidden"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="main-navigation">
 
-    <form id="busqueda-form" class="busqueda-form">
-      <div class="busqueda-campo">
-        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
 
-        <input
-          type="search"
-          id="busqueda-input"
-          placeholder="Buscar nombres, códigos, grupos o actividades..."
-          aria-label="Buscar en todas las páginas de Bitácora P&D"
-          autocomplete="off"
-        >
+        </button>
 
-        <button type="submit">Buscar</button>
+
+        <!-- Navegación -->
+        <nav id="main-navigation"
+             class="hidden w-full pb-4 md:block md:w-auto md:pb-0">
+
+          <ul class="mb-0 flex list-none flex-col gap-1 p-0 text-sm font-medium md:flex-row md:items-center md:gap-2">
+
+            <!-- Inicio -->
+            <li>
+
+              <a href="index.html"
+                 class="nav-link flex items-center gap-2 rounded-lg px-4 py-3 text-white no-underline hover:bg-white/10 hover:text-blue-200">
+
+                <i class="fa-solid fa-house"></i>
+                Inicio
+
+              </a>
+
+            </li>
+
+
+            <!-- Ingresos -->
+            <li>
+
+              <details class="group relative" open>
+
+                <summary
+                  class="nav-link active flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
+
+                  <i class="fa-solid fa-clipboard-list"></i>
+                  Ingresos
+
+                  <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
+
+                </summary>
+
+
+                <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
+
+                  <li>
+                    <a href="ingreso.html"
+                       class="active block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700"
+                       aria-current="page">
+
+                      <i class="fa-solid fa-users mr-2"></i>
+                      Ingreso RACSA
+
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="ingvarios.html"
+                       class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+
+                      <i class="fa-solid fa-user-group mr-2"></i>
+                      Ingresos varios
+
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="seguridad.html"
+                       class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+
+                      <i class="fa-solid fa-shield-halved mr-2"></i>
+                      Seguridad
+
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="conavi.html"
+                       class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+
+                      <i class="fa-solid fa-road mr-2"></i>
+                      CONAVI
+
+                    </a>
+                  </li>
+
+                </ul>
+
+              </details>
+
+            </li>
+
+
+            <!-- Eventos -->
+            <li>
+
+              <details class="group relative">
+
+                <summary
+                  class="nav-link flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
+
+                  <i class="fa-solid fa-calendar-days"></i>
+                  Eventos
+
+                  <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
+
+                </summary>
+
+
+                <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
+
+                  <li>
+                    <a href="eventos.html"
+                       class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+
+                      <i class="fa-solid fa-calendar-check mr-2"></i>
+                      Eventos
+
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="controlvehicular.html"
+                       class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
+
+                      <i class="fa-solid fa-car mr-2"></i>
+                      Control vehicular
+
+                    </a>
+                  </li>
+
+                </ul>
+
+              </details>
+
+            </li>
+
+          </ul>
+
+        </nav>
+
       </div>
-    </form>
 
-    <div id="busqueda-resultados"
-         class="busqueda-resultados"
-         aria-live="polite">
     </div>
 
-  </div>
-</section>
+  </header>
+
+
+  <!-- ======================================
+       BUSCADOR GLOBAL
+  ======================================= -->
+
+  <section class="busqueda-global">
+
+    <div class="busqueda-contenedor">
+
+      <div class="busqueda-titulo">
+        <i class="fa-solid fa-magnifying-glass me-2"></i>
+        Buscar en toda la Bitácora
+      </div>
+
+      <form id="busqueda-form">
+
+        <div class="busqueda-campo">
+
+          <input
+            type="search"
+            id="busqueda-input"
+            placeholder="Escriba un nombre, grupo, placa o palabra..."
+            autocomplete="off"
+            aria-label="Buscar información en la Bitácora">
+
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass me-1"></i>
+            Buscar
+          </button>
+
+        </div>
+
+      </form>
+
+      <div id="busqueda-resultados" aria-live="polite"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================
+       CONTENIDO PRINCIPAL
+  ======================================= -->
 
   <main class="main-container">
+
 
     <!-- Encabezado operativo -->
     <section class="page-header">
@@ -504,209 +807,129 @@ details[open] .dropdown-panel {
   </main>
 
 
-  <!-- Pie de página -->
+  <!-- ======================================
+       PIE DE PÁGINA
+  ======================================= -->
+
   <footer>
+
     <strong>BITÁCORA P&D · ESPARZA</strong>
+
     <br>
+
     Control y registro operativo
+
     <br>
+
     © <span id="year"></span>
+
   </footer>
 
 
+  <!-- ======================================
+       JAVASCRIPT
+  ======================================= -->
+
   <!-- Bootstrap JavaScript -->
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
-
-<script>
-(() => {
-  const menuToggle = document.getElementById("menu-toggle");
-  const navigation = document.getElementById("main-navigation");
-
-  if (!menuToggle || !navigation) return;
-
-  // Abrir y cerrar el menú móvil
- 
-document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.getElementById("menu-toggle");
-  const navigation = document.getElementById("main-navigation");
-  const menuIcon = document.getElementById("menu-icon");
-
-  if (!menuToggle || !navigation) return;
-
-  function closeMenu() {
-    navigation.classList.add("hidden");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Abrir menú");
-
-    if (menuIcon) {
-      menuIcon.classList.remove("fa-xmark");
-      menuIcon.classList.add("fa-bars");
-    }
-  }
-
-  function openMenu() {
-    navigation.classList.remove("hidden");
-    menuToggle.setAttribute("aria-expanded", "true");
-    menuToggle.setAttribute("aria-label", "Cerrar menú");
-
-    if (menuIcon) {
-      menuIcon.classList.remove("fa-bars");
-      menuIcon.classList.add("fa-xmark");
-    }
-  }
-
-  menuToggle.addEventListener("click", function () {
-    const isExpanded =
-      menuToggle.getAttribute("aria-expanded") === "true";
-
-    if (isExpanded) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  navigation.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", function () {
-      if (window.innerWidth < 768) {
-        closeMenu();
-      }
-    });
-  });
-
-  window.addEventListener("resize", function () {
-    if (window.innerWidth >= 768) {
-      navigation.classList.remove("hidden");
-      menuToggle.setAttribute("aria-expanded", "false");
-
-      if (menuIcon) {
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
-      }
-    } else {
-      closeMenu();
-    }
-  });
-});
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
-  // Cerrar el menú al seleccionar un enlace en móviles
-  navigation.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (window.innerWidth < 768) {
-        navigation.classList.add("hidden");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Abrir menú de navegación");
-        menuToggle.innerHTML =
-          '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
-      }
-    });
-  });
-
-  // Restablecer al cambiar el tamaño de pantalla
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 768) {
-      navigation.classList.remove("hidden");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Abrir menú de navegación");
-      menuToggle.innerHTML =
-        '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
-    } else if (menuToggle.getAttribute("aria-expanded") !== "true") {
-      navigation.classList.add("hidden");
-    }
-  });
-})();
-</script>
-
+  <!-- Año automático -->
   <script>
     document.getElementById("year").textContent =
       new Date().getFullYear();
   </script>
 
-<script src="busqueda.js" defer></script>
-  
 
-/* ========================================
-   CONTROL DEL MENÚ MÓVIL
-======================================== */
+  <!-- Control del menú móvil -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener("DOMContentLoaded", function () {
+      const menuToggle = document.getElementById("menu-toggle");
+      const mainNavigation = document.getElementById("main-navigation");
+      const menuIcon = document.getElementById("menu-icon");
 
-  const menuToggle = document.getElementById("menu-toggle");
-  const mainNavigation = document.getElementById("main-navigation");
-  const menuIcon = document.getElementById("menu-icon");
+      if (!menuToggle || !mainNavigation) return;
 
-  if (!menuToggle || !mainNavigation) return;
+      function closeMenu() {
 
-  function closeMenu() {
-    mainNavigation.classList.add("hidden");
+        mainNavigation.classList.add("hidden");
 
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Abrir menú");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Abrir menú");
 
-    if (menuIcon) {
-      menuIcon.classList.remove("fa-xmark");
-      menuIcon.classList.add("fa-bars");
-    }
-  }
-
-  function openMenu() {
-    mainNavigation.classList.remove("hidden");
-
-    menuToggle.setAttribute("aria-expanded", "true");
-    menuToggle.setAttribute("aria-label", "Cerrar menú");
-
-    if (menuIcon) {
-      menuIcon.classList.remove("fa-bars");
-      menuIcon.classList.add("fa-xmark");
-    }
-  }
-
-  menuToggle.addEventListener("click", function () {
-
-    const isExpanded =
-      menuToggle.getAttribute("aria-expanded") === "true";
-
-    if (isExpanded) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-
-  });
-
-  mainNavigation.querySelectorAll("a").forEach(function (link) {
-
-    link.addEventListener("click", function () {
-
-      if (window.innerWidth < 768) {
-        closeMenu();
+        if (menuIcon) {
+          menuIcon.classList.remove("fa-xmark");
+          menuIcon.classList.add("fa-bars");
+        }
       }
+
+      function openMenu() {
+
+        mainNavigation.classList.remove("hidden");
+
+        menuToggle.setAttribute("aria-expanded", "true");
+        menuToggle.setAttribute("aria-label", "Cerrar menú");
+
+        if (menuIcon) {
+          menuIcon.classList.remove("fa-bars");
+          menuIcon.classList.add("fa-xmark");
+        }
+      }
+
+      menuToggle.addEventListener("click", function () {
+
+        const isExpanded =
+          menuToggle.getAttribute("aria-expanded") === "true";
+
+        if (isExpanded) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+
+      });
+
+      // Cerrar el menú al seleccionar un enlace en móvil
+      mainNavigation.querySelectorAll("a").forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+          if (window.innerWidth < 768) {
+            closeMenu();
+          }
+
+        });
+
+      });
+
+      // Ajustar el menú al cambiar el tamaño de pantalla
+      window.addEventListener("resize", function () {
+
+        if (window.innerWidth >= 768) {
+
+          mainNavigation.classList.remove("hidden");
+          menuToggle.setAttribute("aria-expanded", "false");
+
+          if (menuIcon) {
+            menuIcon.classList.remove("fa-xmark");
+            menuIcon.classList.add("fa-bars");
+          }
+
+        } else {
+
+          closeMenu();
+
+        }
+
+      });
 
     });
+  </script>
 
-  });
 
-  window.addEventListener("resize", function () {
-
-    if (window.innerWidth >= 768) {
-
-      mainNavigation.classList.remove("hidden");
-      menuToggle.setAttribute("aria-expanded", "false");
-
-      if (menuIcon) {
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
-      }
-
-    } else {
-      closeMenu();
-    }
-
-  });
-
-});
+  <!-- Buscador global compartido -->
+  <script src="busqueda.js" defer></script>
 
 </body>
 </html>
