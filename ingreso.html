@@ -13,7 +13,15 @@
   <!-- Font Awesome -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <!-- Tailwind CSS para la navegación -->
+<script>
+  tailwind.config = {
+    corePlugins: {
+      preflight: false
+    }
+  };
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
       --navy: #102a4c;
@@ -394,71 +402,159 @@
 <body>
 
   <!-- Menú principal -->
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-    <div class="container">
+  
+<!-- NAVEGACIÓN PRINCIPAL BITÁCORA P&D -->
+<header class="sticky top-0 z-50 bg-[#102a4c] text-white shadow-lg">
 
-      <a class="navbar-brand" href="index.html">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between px-4">
+
+    <!-- Marca -->
+    <a href="index.html" class="py-3 text-white no-underline">
+      <span class="block text-xl font-bold tracking-wide">
         BITÁCORA
-        <small>P&D · ESPARZA</small>
-      </a>
+      </span>
+      <span class="block text-xs tracking-widest text-slate-300">
+        P&D · ESPARZA
+      </span>
+    </a>
 
-      <button class="navbar-toggler" type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#menuPrincipal"
-              aria-controls="menuPrincipal"
-              aria-expanded="false"
-              aria-label="Abrir menú">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <!-- Botón móvil -->
+    <button
+      id="menu-toggle"
+      type="button"
+      class="rounded-lg border border-white/20 px-3 py-2 text-white hover:bg-white/10 md:hidden"
+      aria-controls="main-navigation"
+      aria-expanded="false"
+      aria-label="Abrir menú de navegación">
 
-      <div class="collapse navbar-collapse" id="menuPrincipal">
+      <i class="fa-solid fa-bars text-lg" aria-hidden="true"></i>
+    </button>
 
-        <ul class="navbar-nav ms-auto">
+    <!-- Navegación -->
+    <nav id="main-navigation"
+         aria-label="Navegación principal"
+         class="hidden w-full pb-4 md:block md:w-auto md:pb-0">
 
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">
-              <i class="fa-solid fa-house"></i> Inicio
-            </a>
-          </li>
+      <ul class="flex flex-col gap-1 text-sm font-medium md:flex-row md:items-center md:gap-2">
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active"
-               href="ingreso.html"
-               id="menuIngresos"
-               role="button"
-               data-bs-toggle="dropdown"
-               aria-expanded="false">
-              Ingresos
-            </a>
+        <!-- Inicio -->
+        <li>
+          <a href="index.html"
+             class="flex items-center gap-2 rounded-lg px-4 py-3 text-white transition hover:bg-white/10 hover:text-blue-200">
 
-            <ul class="dropdown-menu" aria-labelledby="menuIngresos">
-              <li><a class="dropdown-item active" href="ingreso.html">RACSA</a></li>
-              <li><a class="dropdown-item" href="ingvarios.html">CONAVI & Externo</a></li>
-              <li><a class="dropdown-item" href="seguridad.html">Seguridad Privada</a></li>
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            Inicio
+          </a>
+        </li>
+
+        <!-- Ingresos -->
+        <li>
+          <details class="group relative">
+
+            <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-lg bg-white/10 px-4 py-3 text-blue-200 transition md:justify-start">
+
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+                Ingresos
+              </span>
+
+              <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"
+                 aria-hidden="true"></i>
+            </summary>
+
+            <ul class="dropdown-panel mt-1 overflow-hidden rounded-lg bg-white py-2 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
+
+              <li>
+                <a href="ingreso.html"
+                   aria-current="page"
+                   class="block bg-blue-50 px-4 py-3 font-semibold text-blue-700">
+
+                  <i class="fa-solid fa-building mr-2 w-4 text-blue-500"
+                     aria-hidden="true"></i>
+                  RACSA
+                </a>
+              </li>
+
+              <li>
+                <a href="ingvarios.html"
+                   class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+
+                  <i class="fa-solid fa-road mr-2 w-4 text-blue-500"
+                     aria-hidden="true"></i>
+                  CONAVI &amp; Externo
+                </a>
+              </li>
+
+              <li>
+                <a href="seguridad.html"
+                   class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+
+                  <i class="fa-solid fa-shield-halved mr-2 w-4 text-blue-500"
+                     aria-hidden="true"></i>
+                  Seguridad privada
+                </a>
+              </li>
+
             </ul>
-          </li>
+          </details>
+        </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"
-               href="eventos.html"
-               id="menuEventos"
-               role="button"
-               data-bs-toggle="dropdown"
-               aria-expanded="false">
-              Eventos
-            </a>
+        <!-- Eventos -->
+        <li>
+          <details class="group relative">
 
-            <ul class="dropdown-menu" aria-labelledby="menuEventos">
-              <li><a class="dropdown-item" href="conavi.html">Eventos CONAVI</a></li>
-              <li><a class="dropdown-item" href="eventos.html">Eventos Varios</a></li>
-              <li><a class="dropdown-item" href="controlvehicular.html">Control Vehicular</a></li>
+            <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-lg px-4 py-3 transition hover:bg-white/10 hover:text-blue-200 md:justify-start">
+
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                Eventos
+              </span>
+
+              <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"
+                 aria-hidden="true"></i>
+            </summary>
+
+            <ul class="dropdown-panel mt-1 overflow-hidden rounded-lg bg-white py-2 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
+
+              <li>
+                <a href="conavi.html"
+                   class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+
+                  <i class="fa-solid fa-road mr-2 w-4 text-blue-500"
+                     aria-hidden="true"></i>
+                  Eventos CONAVI
+                </a>
+              </li>
+
+              <li>
+                <a href="eventos.html"
+                   class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+
+                  <i class="fa-solid fa-list-check mr-2 w-4 text-blue-500"
+                     aria-hidden="true"></i>
+                  Eventos varios
+                </a>
+              </li>
+
+              <li>
+                <a href="controlvehicular.html"
+                   class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+
+                  <i class="fa-solid fa-car mr-2 w-4 text-blue-500"
+                     aria-hidden="true"></i>
+                  Control vehicular
+                </a>
+              </li>
+
             </ul>
-          </li>
+          </details>
+        </li>
 
-        </ul>
-      </div>
-    </div>
-  </nav>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 
 
 <!-- BUSCADOR GLOBAL BITÁCORA P&D -->
