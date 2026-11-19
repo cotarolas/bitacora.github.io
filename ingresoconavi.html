@@ -57,6 +57,35 @@
       </div>
     </div>
   </nav>
+  
+<!-- BUSCADOR GLOBAL BITÁCORA P&D -->
+<section class="busqueda-global" aria-label="Buscador global">
+  <div class="busqueda-contenedor">
+
+    <form id="busqueda-form" class="busqueda-form">
+      <div class="busqueda-campo">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
+        <input
+          type="search"
+          id="busqueda-input"
+          placeholder="Buscar nombres, códigos, grupos o actividades..."
+          aria-label="Buscar en todas las páginas de Bitácora P&D"
+          autocomplete="off"
+        >
+
+        <button type="submit">Buscar</button>
+      </div>
+    </form>
+
+    <div id="busqueda-resultados"
+         class="busqueda-resultados"
+         aria-live="polite">
+    </div>
+
+  </div>
+</section>
+
 </header>
   <body>
       <div class="content-wrap">
