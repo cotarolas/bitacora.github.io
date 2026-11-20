@@ -1,117 +1,143 @@
 <!doctype html>
-<html lang="Es">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a4c">
+  <meta name="description" content="Bitácora P&D: Registro de Eventos CONAVI - Grupo D Esparza.">
+  <title>Eventos CONAVI | Bitácora P&amp;D Esparza</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/bitacora.css">
+</head>
 
-    <title>BITACORA GRUPO D | P&D ESPARZA</title>
-  </head>
-<header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">Bitácora</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <!--a class="nav-link" href="conavi.html">Conavi</!--a-->
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="ingreso.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Ingresos
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="ingreso.html">Racsa</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="ingvarios.html">Conavi & Externo</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="seguridad.html">Seguridad Privada</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="eventos.html" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Eventos
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="conavi.html">Eventos Conavi</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="eventos.html">Eventos Varios</a></li>
-              <li><a class="dropdown-item" href="controlvehicular.html">Control Vehicular</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+<body class="bg-slate-100 text-slate-800 font-sans flex min-h-screen flex-col">
+
+  <!-- Header inyectado automáticamente por js/app.js -->
+  <div id="app-header"></div>
+
+  <!-- Buscador instantáneo en la página -->
+  <section class="border-b border-slate-200 bg-white px-4 py-4 shadow-sm" aria-label="Buscador de registros">
+    <div class="mx-auto max-w-5xl">
+      <div class="relative flex items-center rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2 focus-within:border-blue-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-200">
+        <i class="fa-solid fa-magnifying-glass mr-3 text-blue-600" aria-hidden="true"></i>
+        <input
+          id="page-search-input"
+          type="search"
+          placeholder="Buscar avería, fuga, piedra bruta, mezcla asfáltica, cisterna, predio lleno o código (48, 45, 59, 28, 49)..."
+          class="w-full bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none"
+          aria-label="Buscar registros en esta página">
+        <button
+          id="page-search-clear"
+          type="button"
+          class="ml-2 hidden rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-500 hover:bg-slate-200 hover:text-slate-800"
+          aria-label="Limpiar búsqueda">
+          Limpiar
+        </button>
       </div>
+      <p id="page-search-status" class="mt-2 hidden text-xs font-semibold text-blue-700" aria-live="polite"></p>
     </div>
-  </nav>
-</header>
-  <body>
-      <div class="content-wrap">
-      <div class="content-box clearfix">
-      <div class="content-wrap-inner">
-      <div class="container">
-      <div class="row">
-      <div class="col-lg-12">
-      <div class="entry-content">
-        
-      
-        <div class="shadow-none p-lg-2 mb-xxl-1 text-white bg-dark rounded-1">
-        <figure class="text-center">
-          <h2><strong>Eventos CONAVI</strong></h2>
-            <p>NOTAS GRUPO (D) 18:00-00:00</p> 
-            <p>Recodar siempre modificar la hora de finalización para que se registre el tiempo de cada evento.</p>  
-            <p> <strong>UNICAMENTE GRUPO D | ESTACIÓN 1 | ESPARZA - SJO</strong></p>
-        </figure>
-        </div>
-        
-        <div class="shadow-none p-2 mb-5 bg-light rounded">
-              <p class="text-decoration-underline"><strong>CONAVI</strong></p>
-              <ol class="list-group list-group-flush">
-                
-                <li class="list-group-item">Se libera vehiculo placa:_____ con exceso en conjunto leve de:____ kilos id:______ con autorizacion de funcionario de CONAVI:______. (48).</li>
-                <li class="list-group-item">Se libera Seletiva por presa vehicular con autorización de CONAVI, funcionario: _____. Se normaliza.(48)</li>
-                <li class="list-group-item">Vehiculo Placa: ____, circula con exceso de dimensiones, sin permiso. id: ____, se informa a CONAVI, funcionario: _____. (45)</li>
-                <li class="list-group-item">Se reporta Avería: _____, Daño:___, Se informa a ______ de CONAVI, Circuito: ____, Se cierra Avería, reparada por: ____. (59)</li>
-                <li class="list-group-item">Se reporta la siguiente inconcistencia en el sistema: ______, id: ____. se informa a CONAVI, funcionario: _______. (34)</li>
-                <li class="list-group-item">Se fuga Vehiculo Placa: , por: _____. Se informa a CONAVI, funcionario: _____. (28)</li>
-                <li class="list-group-item">Se detecta irregularidad o falsificación en permisos de vehiculo Placa: ____, se informa a CONAVI, funcionario:____. (31)</li>
-                <li class="list-group-item">Lista de Vehiculos que transportan Piedra Bruta Liberados con desbalance,con Autorización de CONAVI, Fiscal: ____.Placas: ___.(48)-(69)-(27)</li>
-                <li class="list-group-item">Lista de Vehiculos que transportan Mezcla Asfaltica: Placa:___, ID: ____, Guía: ____. (44)</li>
-                <li class="list-group-item">Lista de Vehiculos Cisterna Liberados con desbalance,con Autorización de CONAVI, Fiscal: ____. Placas: ___. (48)</li>
-                <li class="list-group-item">Se alerta a CONAVI, por predio lleno (12 vehículos), funcionario: _____. (49)</li>
-              </ol>  
-            </div>
+  </section>
 
+  <!-- Contenido principal -->
+  <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-7 sm:px-6">
+
+    <!-- Encabezado operativo -->
+    <header class="mb-6 rounded-2xl bg-gradient-to-br from-[#102a4c] to-[#183b65] px-5 py-7 text-center text-white shadow-md">
+      <p class="mb-1 text-xs font-bold uppercase tracking-[.2em] text-blue-200">
+        Módulo de Eventos · CONAVI
+      </p>
+      <h1 class="flex items-center justify-center gap-2.5 text-2xl font-bold tracking-tight sm:text-3xl">
+        <i class="fa-solid fa-road text-blue-300" aria-hidden="true"></i>
+        Eventos CONAVI
+      </h1>
+      <p class="mt-2 text-sm font-semibold text-blue-100">
+        NOTAS GRUPO (D) · 18:00 – 00:00
+      </p>
+      <p class="mt-1 text-xs text-slate-200 sm:text-sm">
+        Recordar siempre modificar la hora de finalización para que se registre el tiempo de cada evento.
+      </p>
+      <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold text-[#102a4c] shadow-sm sm:text-sm">
+        <i class="fa-solid fa-location-dot text-blue-600" aria-hidden="true"></i>
+        ÚNICAMENTE GRUPO D | ESTACIÓN 1 | ESPARZA - SJO
       </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
+    </header>
+
+    <!-- Registros CONAVI -->
+    <section class="section-card mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <div class="mb-4 flex flex-wrap items-center justify-between gap-2 border-b-2 border-slate-100 pb-3">
+        <h2 class="flex items-center gap-2 text-lg font-bold text-[#102a4c]">
+          <i class="fa-solid fa-clipboard-list text-blue-600" aria-hidden="true"></i>
+          CONAVI
+        </h2>
+        <span class="text-xs font-medium text-slate-400">11 plantillas</span>
       </div>
 
-     
-    <!-- Optional JavaScript; choose one of the two! -->
+      <ol class="record-list space-y-2.5">
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Se libera vehiculo placa: _____ con exceso en conjunto leve de: ____ kilos id: ______ con autorizacion de funcionario de CONAVI: ______.
+          <span class="reference-code">(48)</span>
+        </li>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Se libera Selectiva por presa vehicular con autorización de CONAVI, funcionario: _____. Se normaliza.
+          <span class="reference-code">(48)</span>
+        </li>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-  </body>
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Vehiculo Placa: ____, circula con exceso de dimensiones, sin permiso. id: ____, se informa a CONAVI, funcionario: _____.
+          <span class="reference-code">(45)</span>
+        </li>
+
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Se reporta Avería: _____, Daño: ___, Se informa a ______ de CONAVI, Circuito: ____, Se cierra Avería, reparada por: ____.
+          <span class="reference-code">(59)</span>
+        </li>
+
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Se reporta la siguiente inconsistencia en el sistema: ______, id: ____. Se informa a CONAVI, funcionario: _______.
+          <span class="reference-code">(34)</span>
+        </li>
+
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Se fuga Vehiculo Placa: ____, por: _____. Se informa a CONAVI, funcionario: _____.
+          <span class="reference-code">(28)</span>
+        </li>
+
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Se detecta irregularidad o falsificación en permisos de vehiculo Placa: ____, se informa a CONAVI, funcionario: ____.
+          <span class="reference-code">(31)</span>
+        </li>
+
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Lista de Vehiculos que transportan Piedra Bruta Liberados con desbalance, con Autorización de CONAVI, Fiscal: ____. Placas: ___.
+          <span class="reference-code">(48)-(69)-(27)</span>
+        </li>
+
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Lista de Vehiculos que transportan Mezcla Asfaltica: Placa: ___, ID: ____, Guía: ____.
+          <span class="reference-code">(44)</span>
+        </li>
+
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Lista de Vehiculos Cisterna Liberados con desbalance, con Autorización de CONAVI, Fiscal: ____. Placas: ___.
+          <span class="reference-code">(48)</span>
+        </li>
+
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Se alerta a CONAVI, por predio lleno (12 vehículos), funcionario: _____.
+          <span class="reference-code">(49)</span>
+        </li>
+      </ol>
+    </section>
+
+  </main>
+
+  <!-- Footer inyectado automáticamente por js/app.js -->
+  <div id="app-footer"></div>
+
+  <script src="js/app.js"></script>
+  <script src="js/bitacora.js"></script>
+</body>
 </html>
