@@ -20,7 +20,7 @@
     summary { list-style: none; }
     summary::-webkit-details-marker { display: none; }
 
-    /* Numeración automática de registros */
+    /* Numeración circular en listas de registros */
     .record-list {
       list-style: none;
       counter-reset: record;
@@ -38,8 +38,8 @@
       position: absolute;
       left: 0.85rem;
       top: 0.9rem;
-      width: 1.6rem;
-      height: 1.6rem;
+      width: 1.65rem;
+      height: 1.65rem;
       background: var(--navy);
       color: #ffffff;
       border-radius: 9999px;
@@ -49,6 +49,18 @@
       font-size: 0.78rem;
       font-weight: 700;
     }
+
+    .reference-code {
+      display: inline-block;
+      background: #eaf1ff;
+      color: #1d4ed8;
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
   </style>
 </head>
 
@@ -57,7 +69,7 @@
   <!-- Header inyectado automáticamente por js/app.js -->
   <div id="app-header"></div>
 
-  <!-- Barra de búsqueda instantánea en la página -->
+  <!-- Buscador instantáneo en la página -->
   <section class="border-b border-slate-200 bg-white px-4 py-4 shadow-sm" aria-label="Buscador de registros">
     <div class="mx-auto max-w-5xl">
       <div class="relative flex items-center rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2 focus-within:border-blue-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-200">
@@ -65,9 +77,9 @@
         <input
           id="page-search-input"
           type="search"
-          placeholder="Filtrar registros por palabra clave, placa, nombre o código..."
+          placeholder="Buscar por día (viernes, domingo, miércoles), grupo, placa, código (60, 57, 58) o cena..."
           class="w-full bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none"
-          aria-label="Filtrar registros en esta página">
+          aria-label="Buscar registros en esta página">
         <button
           id="page-search-clear"
           type="button"
@@ -83,7 +95,7 @@
   <!-- Contenido principal -->
   <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-7 sm:px-6">
 
-    <!-- Encabezado del módulo -->
+    <!-- Encabezado de página -->
     <header class="mb-6 rounded-2xl bg-gradient-to-br from-[#102a4c] to-[#183b65] px-5 py-7 text-center text-white shadow-md">
       <p class="mb-1 text-xs font-bold uppercase tracking-[.2em] text-blue-200">
         Módulo de Ingresos · RACSA
@@ -95,7 +107,7 @@
         Horario operativo: 18:00 – 00:00
       </p>
       <p class="mt-1 text-xs text-slate-200 sm:text-sm">
-        Recordar siempre modificar la hora de finalización para registrar correctamente cada evento.
+        Recordar siempre modificar la hora de finalización para que se registre correctamente el tiempo de cada evento.
       </p>
       <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold text-[#102a4c] shadow-sm sm:text-sm">
         <i class="fa-solid fa-location-dot text-blue-600" aria-hidden="true"></i>
@@ -103,43 +115,91 @@
       </div>
     </header>
 
-    <!-- Tarjeta de Sección 1 -->
+    <!-- Personal administrativo RACSA -->
     <section class="section-card mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-      <h2 class="mb-4 flex flex-wrap items-center justify-between gap-2 border-b-2 border-slate-100 pb-3 text-lg font-bold text-[#102a4c]">
-        <span>
-          <i class="fa-solid fa-building mr-2 text-blue-600" aria-hidden="true"></i>
-          Ingresos RACSA
-        </span>
-        <span class="reference-code rounded-md bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700">
-          REF: RACSA-P&amp;D
-        </span>
+      <h2 class="mb-4 flex items-center gap-2 border-b-2 border-slate-100 pb-3 text-lg font-bold text-[#102a4c]">
+        <i class="fa-solid fa-user-tie text-blue-600" aria-hidden="true"></i>
+        ADMINISTRATIVO RACSA
       </h2>
 
-      <!-- Subgrupo por día o turno -->
-      <h3 class="day-title my-4 border-l-4 border-blue-600 pl-3 text-sm font-bold text-[#102a4c]">
-        Registros estándar / Plantillas operativas
+      <div class="simple-record rounded-xl border-l-4 border-blue-600 bg-slate-50 p-4 text-sm leading-relaxed text-slate-700">
+        Ingresa el señor: ____, administrativo de RACSA. Se retira.
+      </div>
+    </section>
+
+    <!-- Ingreso de grupos -->
+    <section class="section-card mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <h2 class="mb-4 flex flex-wrap items-center gap-2 border-b-2 border-slate-100 pb-3 text-lg font-bold text-[#102a4c]">
+        <i class="fa-solid fa-people-group text-blue-600" aria-hidden="true"></i>
+        INGRESO DE GRUPOS RACSA
+        <span class="reference-code">(60)</span>
+      </h2>
+
+      <!-- Viernes, sábados y lunes -->
+      <h3 class="day-title my-4 border-l-4 border-blue-600 pl-3 text-sm font-bold uppercase tracking-wide text-[#102a4c]">
+        VIERNES - SÁBADOS - LUNES
       </h3>
 
       <ol class="record-list space-y-2.5">
-        <!-- Pega aquí tus <li> reales de ingreso.html -->
         <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
-          Ejemplo de registro: Ingreso de personal técnico de RACSA a Estación 1 para revisión de enlaces y equipos de comunicación.
+          INGRESA GRUPO D: DAVID F. Y CARLOS O, SE RECIBE DE GRUPO C: CARMEN J. Y DANIELA S., CON SISTEMA EN BUEN FUNCIONAMIENTO (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
         </li>
+
         <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
-          Ejemplo de registro: Salida de cuadrilla RACSA tras finalizar labores de mantenimiento preventivo en caseta de telecomunicaciones.
+          SE RETIRA GRUPO D: DAVID F. Y CARLOS O, ENTREGA A GRUPO A: MANRIQUE M. Y MANUEL G., CON SISTEMA EN BUEN FUNCIONAMIENTO (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
+        </li>
+      </ol>
+
+      <!-- Domingos -->
+      <h3 class="day-title my-5 border-l-4 border-blue-600 pl-3 text-sm font-bold uppercase tracking-wide text-[#102a4c]">
+        DOMINGOS
+      </h3>
+
+      <ol class="record-list space-y-2.5">
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          INGRESA GRUPO D: DAVID F. Y CARLOS O, SE RECIBE DE GRUPO C: CARMEN J. Y DANIELA S., CON SISTEMA EN BUEN FUNCIONAMIENTO (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
+        </li>
+
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          SE RETIRA GRUPO D: DAVID F. Y CARLOS O, ENTREGA A GRUPO E: JEFERSON Y BELEN N., CON SISTEMA EN BUEN FUNCIONAMIENTO (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
+        </li>
+      </ol>
+
+      <!-- Miércoles y jueves -->
+      <h3 class="day-title my-5 border-l-4 border-blue-600 pl-3 text-sm font-bold uppercase tracking-wide text-[#102a4c]">
+        MIÉRCOLES Y JUEVES
+      </h3>
+
+      <ol class="record-list space-y-2.5">
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          INGRESA GRUPO D: DAVID F. Y CARLOS O, SE RECIBE DE GRUPO E: JEFERSON Y BELEN N, CON SISTEMA EN BUEN FUNCIONAMIENTO (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
+        </li>
+
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          SE RETIRA GRUPO D: DAVID F. Y CARLOS O, ENTREGA A GRUPO A: MANRIQUE M. Y MANUEL G., CON SISTEMA EN BUEN FUNCIONAMIENTO (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
         </li>
       </ol>
     </section>
 
-    <!-- Tarjeta de registros administrativos / notas -->
-    <section class="section-card mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-      <h2 class="mb-4 border-b-2 border-slate-100 pb-3 text-lg font-bold text-[#102a4c]">
-        <i class="fa-solid fa-clipboard-check mr-2 text-blue-600" aria-hidden="true"></i>
-        Notas administrativas
+    <!-- Cena y almuerzo -->
+    <section class="meal-card mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <h2 class="mb-4 flex items-center gap-2 border-b-2 border-slate-100 pb-3 text-lg font-bold text-[#102a4c]">
+        <i class="fa-solid fa-utensils text-blue-600" aria-hidden="true"></i>
+        CENA Y ALMUERZO
       </h2>
 
-      <div class="simple-record rounded-lg border-l-4 border-blue-600 bg-slate-50 p-4 text-sm leading-relaxed text-slate-700">
-        Verificación de gafetes institucionales y boleta de autorización vigente antes de permitir el acceso al recinto.
+      <div class="space-y-2.5">
+        <p class="registro-item rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          <i class="fa-solid fa-moon mr-1.5 text-blue-600" aria-hidden="true"></i>
+          _____________ Toma su tiempo de CENA.
+          <span class="reference-code">(57)</span>
+        </p>
+
+        <p class="registro-item rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          <i class="fa-solid fa-sun mr-1.5 text-amber-500" aria-hidden="true"></i>
+          _____________ TOMA SU TIEMPO DE ALMUERZO
+          <span class="reference-code">(58)</span>
+        </p>
       </div>
     </section>
 
