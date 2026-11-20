@@ -1,942 +1,154 @@
-
 <!doctype html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a4c">
+  <meta name="description" content="Bitácora P&D: Registro de ingresos RACSA - Grupo D Esparza.">
+  <title>Ingresos RACSA | Bitácora P&amp;D Esparza</title>
 
-  <title>BITÁCORA GRUPO D | P&D ESPARZA</title>
-
-  <!-- Bootstrap 5.1.3: estilos del contenido
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"> -->
-
-  <!-- Font Awesome 6.4.0 -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Tailwind CSS sin Preflight para proteger Bootstrap -->
-  <script>
-    tailwind.config = {
-      corePlugins: {
-        preflight: false
-      }
-    };
-  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* ========================================
-       VARIABLES GENERALES
-    ======================================== */
-
     :root {
       --navy: #102a4c;
       --navy-soft: #183b65;
       --blue: #2563eb;
-      --background: #f3f6fa;
-      --text: #263445;
     }
 
-    body {
-      background: var(--background);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-    }
+    summary { list-style: none; }
+    summary::-webkit-details-marker { display: none; }
 
-
-    /* ========================================
-       NAVEGACIÓN PRINCIPAL BITÁCORA P&D
-    ======================================== */
-
-    summary {
-      list-style: none;
-      cursor: pointer;
-    }
-
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .dropdown-panel {
-      display: none;
-    }
-
-    details[open] .dropdown-panel {
-      display: block;
-    }
-
-    .bitacora-nav-link {
-      transition:
-        background-color .2s ease,
-        color .2s ease;
-    }
-
-    .bitacora-nav-link.active {
-      background-color: rgba(255, 255, 255, .10);
-      color: #bfdbfe;
-    }
-
-    .dropdown-panel a {
-      transition:
-        background-color .2s ease,
-        color .2s ease;
-    }
-
-    .dropdown-panel a.active {
-      background-color: #eff6ff;
-      color: #1d4ed8;
-      font-weight: 700;
-    }
-
-    .bitacora-nav-link:focus-visible,
-    .dropdown-panel a:focus-visible {
-      outline: 2px solid #93c5fd;
-      outline-offset: 2px;
-    }
-
-    @media (max-width: 767px) {
-      #main-navigation {
-        width: 100%;
-      }
-
-      #main-navigation .dropdown-panel {
-        margin-left: 12px;
-      }
-    }
-
-
-   
-/* BUSCADOR GLOBAL */
-.busqueda-global {
-  background: #ffffff;
-  padding: 18px 15px;
-  border-bottom: 1px solid #e5eaf1;
-}
-
-.busqueda-contenedor {
-  max-width: 1050px;
-  margin: 0 auto;
-}
-
-.busqueda-campo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #f3f6fa;
-  border: 1px solid #dbe3ed;
-  border-radius: 12px;
-  padding: 6px 8px 6px 15px;
-}
-
-.busqueda-campo > i {
-  color: #2563eb;
-  font-size: 1.1rem;
-}
-
-.busqueda-campo input {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 10px 0;
-  color: #263445;
-  font-size: .95rem;
-}
-
-.busqueda-campo input:focus {
-  outline: none;
-}
-
-.busqueda-campo button {
-  border: none;
-  border-radius: 8px;
-  background: #102a4c;
-  color: white;
-  padding: 10px 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .2s ease;
-}
-
-.busqueda-campo button:hover {
-  background: #2563eb;
-}
-
-.busqueda-resultados {
-  display: grid;
-  gap: 10px;
-}
-
-.busqueda-contador,
-.busqueda-mensaje {
-  margin: 14px 0 5px;
-  color: #475569;
-  font-size: .9rem;
-}
-
-.busqueda-resultado {
-  background: #f8fafc;
-  border: 1px solid #e1e8f0;
-  border-left: 4px solid #2563eb;
-  border-radius: 9px;
-  padding: 14px 16px;
-}
-
-.busqueda-resultado h3 {
-  color: #102a4c;
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 0 0 7px;
-}
-
-.busqueda-resultado p {
-  color: #475569;
-  font-size: .9rem;
-  line-height: 1.5;
-  margin: 0 0 8px;
-}
-
-.busqueda-resultado a {
-  color: #1d4ed8;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.busqueda-resultado a:hover {
-  text-decoration: underline;
-}
-
-.busqueda-coincidencia {
-  outline: 3px solid #60a5fa !important;
-  outline-offset: 4px;
-  border-radius: 8px;
-  background-color: #eff6ff !important;
-}
-
-@media (max-width: 576px) {
-  .busqueda-global {
-    padding: 12px;
-  }
-
-  .busqueda-campo {
-    gap: 8px;
-    padding-left: 10px;
-  }
-
-  .busqueda-campo input {
-    font-size: .85rem;
-  }
-
-  .busqueda-campo button {
-    padding: 10px 13px;
-  }
-}
-
-
-    /* ========================================
-       CONTENIDO PRINCIPAL
-    ======================================== */
-
-    .main-container {
-      max-width: 1050px;
-      margin: 35px auto;
-      padding: 0 15px;
-    }
-
-    .page-header {
-      background: linear-gradient(
-        135deg,
-        var(--navy),
-        var(--navy-soft)
-      );
-      color: white;
-      border-radius: 14px;
-      padding: 30px 20px;
-      margin-bottom: 25px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(16, 42, 76, .15);
-    }
-
-    .page-header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .page-header .schedule {
-      color: #dbeafe;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .page-header .notice {
-      font-size: .95rem;
-      margin-bottom: 15px;
-    }
-
-    .station-label {
-      display: inline-block;
-      background: #fff;
-      color: var(--navy);
-      border-radius: 30px;
-      padding: 9px 18px;
-      font-size: .9rem;
-      font-weight: 700;
-    }
-
-
-    /* ========================================
-       TARJETAS Y SECCIONES
-    ======================================== */
-
-    .section-card {
-      background: #fff;
-      border: 1px solid #e1e8f0;
-      border-radius: 12px;
-      padding: 22px;
-      margin-bottom: 22px;
-      box-shadow: 0 3px 12px rgba(15, 23, 42, .05);
-    }
-
-    .section-title {
-      color: var(--navy);
-      font-size: 1.15rem;
-      font-weight: 700;
-      border-bottom: 2px solid #e8eef6;
-      padding-bottom: 12px;
-      margin-bottom: 18px;
-    }
-
-    .section-title i {
-      color: var(--blue);
-      margin-right: 8px;
-    }
-
-    .reference-code {
-      display: inline-block;
-      background: #eaf1ff;
-      color: #1d4ed8;
-      border-radius: 6px;
-      padding: 3px 9px;
-      font-size: .82rem;
-      font-weight: 700;
-      margin-left: 5px;
-    }
-
-
-    /* ========================================
-       GRUPOS Y REGISTROS
-    ======================================== */
-
-    .day-title {
-      color: var(--navy);
-      font-size: .95rem;
-      font-weight: 700;
-      margin: 22px 0 10px;
-      padding-left: 10px;
-      border-left: 4px solid var(--blue);
-    }
-
+    /* Numeración automática de registros */
     .record-list {
-      padding-left: 0;
-      margin-bottom: 20px;
       list-style: none;
       counter-reset: record;
+      padding-left: 0;
     }
 
     .record-list li {
       position: relative;
-      background: #f8fafc;
-      border: 1px solid #e5eaf1;
-      border-radius: 9px;
-      padding: 15px 15px 15px 48px;
-      margin-bottom: 10px;
-      line-height: 1.6;
-      font-size: .92rem;
       counter-increment: record;
+      padding-left: 3rem;
     }
 
     .record-list li::before {
       content: counter(record);
       position: absolute;
-      left: 13px;
-      top: 14px;
-      width: 25px;
-      height: 25px;
+      left: 0.85rem;
+      top: 0.9rem;
+      width: 1.6rem;
+      height: 1.6rem;
       background: var(--navy);
-      color: white;
-      border-radius: 50%;
+      color: #ffffff;
+      border-radius: 9999px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: .8rem;
+      font-size: 0.78rem;
       font-weight: 700;
     }
-
-
-    /* ========================================
-       ADMINISTRATIVOS Y ALIMENTACIÓN
-    ======================================== */
-
-    .simple-record {
-      background: #f8fafc;
-      border-left: 4px solid var(--blue);
-      padding: 15px;
-      border-radius: 7px;
-      line-height: 1.6;
-      margin-bottom: 10px;
-    }
-
-    .meal-card {
-      background: #fff;
-      border: 1px solid #e1e8f0;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 22px;
-      box-shadow: 0 3px 12px rgba(15, 23, 42, .05);
-    }
-
-    .meal-card h2 {
-      color: var(--navy);
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-    .meal-card p {
-      background: #f8fafc;
-      border-radius: 7px;
-      padding: 13px;
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-
-    /* ========================================
-       PIE DE PÁGINA
-    ======================================== */
-
-    footer {
-      background: var(--navy);
-      color: #dbeafe;
-      text-align: center;
-      padding: 18px 10px;
-      margin-top: 40px;
-      font-size: .85rem;
-    }
-
-
-    /* ========================================
-       ADAPTACIÓN A DISPOSITIVOS MÓVILES
-    ======================================== */
-
-    @media (max-width: 576px) {
-
-      .main-container {
-        margin-top: 20px;
-      }
-
-      .page-header {
-        padding: 24px 15px;
-      }
-
-      .page-header h1 {
-        font-size: 1.4rem;
-      }
-
-      .station-label {
-        font-size: .78rem;
-      }
-
-      .section-card {
-        padding: 16px;
-      }
-
-      .record-list li {
-        font-size: .85rem;
-      }
-    }
-
-
-    /* ========================================
-       ACCESIBILIDAD
-    ======================================== */
-
-    @media (prefers-reduced-motion: reduce) {
-      .bitacora-nav-link,
-      .dropdown-panel a {
-        transition: none;
-      }
-    }
-
   </style>
 </head>
 
+<body class="bg-slate-100 text-slate-800 font-sans flex min-h-screen flex-col">
 
-<body>
+  <!-- Header inyectado automáticamente por js/app.js -->
+  <div id="app-header"></div>
 
-  <!-- ======================================
-       MENÚ PRINCIPAL BITÁCORA P&D
-  ======================================= -->
-
-  <header class="sticky top-0 z-50 bg-[#102a4c] text-white shadow-lg">
-
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-      <div class="flex min-h-[76px] flex-wrap items-center justify-between">
-
-        <!-- Marca -->
-        <a href="index.html"
-           class="flex items-center gap-3 py-3 text-white no-underline">
-
-          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500 shadow-md">
-              <i class="fa-solid fa-book-open text-xl" aria-hidden="true"></i>
-          </span>
-          <span class="flex flex-col">
-
-            <span class="text-xl font-bold tracking-wide leading-tight">
-              BITÁCORA
-            </span>
-
-            <span class="block text-[10px] font-semibold tracking-[.22em] text-blue-200">
-              P&amp;D · PANEL DE CONTROL
-            </span>
-
-          </span>
-        </a>
-
-
-        <!-- Botón menú móvil -->
-        <button
-          id="menu-toggle"
-          type="button"
-          class="rounded-lg p-2 text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-300 md:hidden"
-          aria-label="Abrir menú"
-          aria-expanded="false"
-          aria-controls="main-navigation">
-
-          <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
-
-        </button>
-
-
-         <!-- Menú principal -->
-                <nav id="main-navigation"
-                     aria-label="Navegación principal"
-                     class="hidden w-full pb-4 md:block md:w-auto md:pb-0">
-
-                    <ul class="flex flex-col gap-1 text-sm font-medium md:flex-row md:items-center md:gap-2">
-
-                        <li>
-                            <a href="index.html"
-                               aria-current="page"
-                               class="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-3 text-blue-200 md:py-3">
-                                <i class="fa-solid fa-house" aria-hidden="true"></i>
-                                Inicio
-                            </a>
-                        </li>
-
-                        <!-- Menú Ingresos -->
-                        <li>
-                            <details class="group relative">
-                                <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-lg px-4 py-3 transition hover:bg-white/10 hover:text-blue-200 md:justify-start">
-                                    <span class="flex items-center gap-2">
-                                        <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
-                                        Ingresos
-                                    </span>
-                                    <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"
-                                       aria-hidden="true"></i>
-                                </summary>
-
-                                <ul class="dropdown-panel mt-1 overflow-hidden rounded-lg bg-white py-2 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
-                                    <li>
-                                        <a href="ingreso.html"
-                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
-                                            <i class="fa-solid fa-building mr-2 w-4 text-blue-500" aria-hidden="true"></i>
-                                            RACSA
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ingvarios.html"
-                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
-                                            <i class="fa-solid fa-road mr-2 w-4 text-blue-500" aria-hidden="true"></i>
-                                            CONAVI &amp; Externo
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="seguridad.html"
-                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
-                                            <i class="fa-solid fa-shield-halved mr-2 w-4 text-blue-500" aria-hidden="true"></i>
-                                            Seguridad privada
-                                        </a>
-                                    </li>
-                                </ul>
-                            </details>
-                        </li>
-
-                        <!-- Menú Eventos -->
-                        <li>
-                            <details class="group relative">
-                                <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-lg px-4 py-3 transition hover:bg-white/10 hover:text-blue-200 md:justify-start">
-                                    <span class="flex items-center gap-2">
-                                        <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
-                                        Eventos
-                                    </span>
-                                    <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"
-                                       aria-hidden="true"></i>
-                                </summary>
-
-                                <ul class="dropdown-panel mt-1 overflow-hidden rounded-lg bg-white py-2 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
-                                    <li>
-                                        <a href="conavi.html"
-                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
-                                            <i class="fa-solid fa-road mr-2 w-4 text-blue-500" aria-hidden="true"></i>
-                                            Eventos CONAVI
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="eventos.html"
-                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
-                                            <i class="fa-solid fa-list-check mr-2 w-4 text-blue-500" aria-hidden="true"></i>
-                                            Eventos varios
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="controlvehicular.html"
-                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
-                                            <i class="fa-solid fa-car mr-2 w-4 text-blue-500" aria-hidden="true"></i>
-                                            Control vehicular
-                                        </a>
-                                    </li>
-                                </ul>
-                            </details>
-                        </li>
-
-                    </ul>
-                </nav>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-  
-<!-- BUSCADOR GLOBAL BITÁCORA P&D -->
-<section class="busqueda-global" aria-label="Buscador global">
-  <div class="busqueda-contenedor">
-
-    <form id="busqueda-form" class="busqueda-form">
-      <div class="busqueda-campo">
-        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-
+  <!-- Barra de búsqueda instantánea en la página -->
+  <section class="border-b border-slate-200 bg-white px-4 py-4 shadow-sm" aria-label="Buscador de registros">
+    <div class="mx-auto max-w-5xl">
+      <div class="relative flex items-center rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2 focus-within:border-blue-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-200">
+        <i class="fa-solid fa-magnifying-glass mr-3 text-blue-600" aria-hidden="true"></i>
         <input
+          id="page-search-input"
           type="search"
-          id="busqueda-input"
-          placeholder="Buscar nombres, códigos, grupos o actividades..."
-          aria-label="Buscar en todas las páginas de Bitácora P&D"
-          autocomplete="off"
-        >
-
-        <button type="submit">Buscar</button>
+          placeholder="Filtrar registros por palabra clave, placa, nombre o código..."
+          class="w-full bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none"
+          aria-label="Filtrar registros en esta página">
+        <button
+          id="page-search-clear"
+          type="button"
+          class="ml-2 hidden rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-500 hover:bg-slate-200 hover:text-slate-800"
+          aria-label="Limpiar búsqueda">
+          Limpiar
+        </button>
       </div>
-    </form>
-
-    <div id="busqueda-resultados"
-         class="busqueda-resultados"
-         aria-live="polite">
+      <p id="page-search-status" class="mt-2 hidden text-xs font-semibold text-blue-700" aria-live="polite"></p>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- Contenido principal -->
+  <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-7 sm:px-6">
 
-  <!-- ======================================
-       CONTENIDO PRINCIPAL
-  ======================================= -->
-
-  <main class="main-container">
-
-
-    <!-- Encabezado operativo -->
-    <section class="page-header">
-
-      <h1>
-        <i class="fa-solid fa-clipboard-list"></i>
-        Ingreso y Salida Personal RACSA
+    <!-- Encabezado del módulo -->
+    <header class="mb-6 rounded-2xl bg-gradient-to-br from-[#102a4c] to-[#183b65] px-5 py-7 text-center text-white shadow-md">
+      <p class="mb-1 text-xs font-bold uppercase tracking-[.2em] text-blue-200">
+        Módulo de Ingresos · RACSA
+      </p>
+      <h1 class="text-2xl font-bold tracking-tight sm:text-3xl">
+        BITÁCORA GRUPO D | P&amp;D ESPARZA
       </h1>
-
-      <p class="schedule">
-        NOTAS GRUPO (D) 18:00-00:00
+      <p class="mt-2 text-sm font-semibold text-blue-100">
+        Horario operativo: 18:00 – 00:00
       </p>
-
-      <p class="notice">
-        Recordar siempre modificar la hora de finalización
-        para que se registre el tiempo de cada evento.
+      <p class="mt-1 text-xs text-slate-200 sm:text-sm">
+        Recordar siempre modificar la hora de finalización para registrar correctamente cada evento.
       </p>
-
-      <div class="station-label">
-        UNICAMENTE GRUPO D | ESTACIÓN 2 | ESPARZA - SJO
+      <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold text-[#102a4c] shadow-sm sm:text-sm">
+        <i class="fa-solid fa-location-dot text-blue-600" aria-hidden="true"></i>
+        Estación 1 | 2 · Esparza - SJO | SJO - Esparza
       </div>
+    </header>
 
-    </section>
-
-
-    <!-- Administrativos RACSA -->
-    <section class="section-card">
-
-      <h2 class="section-title">
-        <i class="fa-solid fa-user-tie"></i>
-        ADMINISTRATIVOS RACSA
-        <span class="reference-code">(53)</span>
+    <!-- Tarjeta de Sección 1 -->
+    <section class="section-card mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <h2 class="mb-4 flex flex-wrap items-center justify-between gap-2 border-b-2 border-slate-100 pb-3 text-lg font-bold text-[#102a4c]">
+        <span>
+          <i class="fa-solid fa-building mr-2 text-blue-600" aria-hidden="true"></i>
+          Ingresos RACSA
+        </span>
+        <span class="reference-code rounded-md bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700">
+          REF: RACSA-P&amp;D
+        </span>
       </h2>
 
-      <div class="simple-record">
-        Ingresa el señor: ____, administrativo de RACSA. Se retira.
+      <!-- Subgrupo por día o turno -->
+      <h3 class="day-title my-4 border-l-4 border-blue-600 pl-3 text-sm font-bold text-[#102a4c]">
+        Registros estándar / Plantillas operativas
+      </h3>
+
+      <ol class="record-list space-y-2.5">
+        <!-- Pega aquí tus <li> reales de ingreso.html -->
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Ejemplo de registro: Ingreso de personal técnico de RACSA a Estación 1 para revisión de enlaces y equipos de comunicación.
+        </li>
+        <li class="rounded-xl border border-slate-200/80 bg-slate-50 p-3.5 text-sm leading-relaxed text-slate-700">
+          Ejemplo de registro: Salida de cuadrilla RACSA tras finalizar labores de mantenimiento preventivo en caseta de telecomunicaciones.
+        </li>
+      </ol>
+    </section>
+
+    <!-- Tarjeta de registros administrativos / notas -->
+    <section class="section-card mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <h2 class="mb-4 border-b-2 border-slate-100 pb-3 text-lg font-bold text-[#102a4c]">
+        <i class="fa-solid fa-clipboard-check mr-2 text-blue-600" aria-hidden="true"></i>
+        Notas administrativas
+      </h2>
+
+      <div class="simple-record rounded-lg border-l-4 border-blue-600 bg-slate-50 p-4 text-sm leading-relaxed text-slate-700">
+        Verificación de gafetes institucionales y boleta de autorización vigente antes de permitir el acceso al recinto.
       </div>
-
-    </section>
-
-
-    <!-- Ingreso de grupos -->
-    <section class="section-card">
-
-      <h2 class="section-title">
-        <i class="fa-solid fa-people-group"></i>
-        INGRESO DE GRUPOS RACSA
-        <span class="reference-code">(60)</span>
-      </h2>
-
-
-      <!-- Viernes, sábados y lunes -->
-      <h3 class="day-title">
-        VIERNES - SÁBADOS - LUNES
-      </h3>
-
-      <ol class="record-list">
-
-        <li>
-          INGRESA GRUPO D: DAVID F. Y CARLOS O, SE RECIBE DE GRUPO C:
-          CARMEN J. Y DANIELA S., CON SISTEMA EN BUEN FUNCIONAMIENTO
-          (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS
-          EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
-        </li>
-
-        <li>
-          SE RETIRA GRUPO D: DAVID F. Y CARLOS O, ENTREGA A GRUPO A:
-          MANRIQUE M. Y MANUEL G., CON SISTEMA EN BUEN FUNCIONAMIENTO
-          (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS
-          EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
-        </li>
-
-      </ol>
-
-
-      <!-- Domingos -->
-      <h3 class="day-title">
-        DOMINGOS
-      </h3>
-
-      <ol class="record-list">
-
-        <li>
-          INGRESA GRUPO D: DAVID F. Y CARLOS O, SE RECIBE DE GRUPO C:
-          CARMEN J. Y DANIELA S., CON SISTEMA EN BUEN FUNCIONAMIENTO
-          (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS
-          EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
-        </li>
-
-        <li>
-          SE RETIRA GRUPO D: DAVID F. Y CARLOS O, ENTREGA A GRUPO E:
-          JEFERSON Y BELEN N., CON SISTEMA EN BUEN FUNCIONAMIENTO
-          (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS
-          EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
-        </li>
-
-      </ol>
-
-
-      <!-- Miércoles y jueves -->
-      <h3 class="day-title">
-        MIÉRCOLES Y JUEVES
-      </h3>
-
-      <ol class="record-list">
-
-        <li>
-          INGRESA GRUPO D: DAVID F. Y CARLOS O, SE RECIBE DE GRUPO E:
-          JEFERSON Y BELEN N, CON SISTEMA EN BUEN FUNCIONAMIENTO
-          (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS
-          EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
-        </li>
-
-        <li>
-          SE RETIRA GRUPO D: DAVID F. Y CARLOS O, ENTREGA A GRUPO A:
-          MANRIQUE M. Y MANUEK G., CON SISTEMA EN BUEN FUNCIONAMIENTO
-          (PMV EN FUNCIONAMIENTO), SIN PRESENCIA DE OT, 0 VEHICULOS
-          EN PREDIO PLACAS: 0, ACTIVOS EN BUEN ESTADO.
-        </li>
-
-      </ol>
-
-    </section>
-
-
-    <!-- Cena y almuerzo -->
-    <section class="meal-card">
-
-      <h2>
-        <i class="fa-solid fa-utensils"></i>
-        CENA Y ALMUERZO
-      </h2>
-
-      <p>
-        <i class="fa-solid fa-moon text-primary"></i>
-        _____________ Toma su tiempo de CENA.
-        <span class="reference-code">(57)</span>
-      </p>
-
-      <p>
-        <i class="fa-solid fa-sun text-primary"></i>
-        _____________ TOMA SU TIEMPO DE ALMUERZO
-        <span class="reference-code">(58)</span>
-      </p>
-
     </section>
 
   </main>
 
+  <!-- Footer inyectado automáticamente por js/app.js -->
+  <div id="app-footer"></div>
 
-  <!-- ======================================
-       PIE DE PÁGINA
-  ======================================= -->
-
-  <footer>
-
-    <strong>BITÁCORA P&D · ESPARZA</strong>
-
-    <br>
-
-    Control y registro operativo
-
-    <br>
-
-    © <span id="year"></span>
-
-  </footer>
-
-
-  <!-- ======================================
-       JAVASCRIPT
-  ======================================= -->
-
-  <!-- Bootstrap JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-  <!-- Año automático -->
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
-
-
-  <!-- Control del menú móvil -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-      const menuToggle = document.getElementById("menu-toggle");
-      const mainNavigation = document.getElementById("main-navigation");
-      const menuIcon = document.getElementById("menu-icon");
-
-      if (!menuToggle || !mainNavigation) return;
-
-      function closeMenu() {
-
-        mainNavigation.classList.add("hidden");
-
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Abrir menú");
-
-        if (menuIcon) {
-          menuIcon.classList.remove("fa-xmark");
-          menuIcon.classList.add("fa-bars");
-        }
-      }
-
-      function openMenu() {
-
-        mainNavigation.classList.remove("hidden");
-
-        menuToggle.setAttribute("aria-expanded", "true");
-        menuToggle.setAttribute("aria-label", "Cerrar menú");
-
-        if (menuIcon) {
-          menuIcon.classList.remove("fa-bars");
-          menuIcon.classList.add("fa-xmark");
-        }
-      }
-
-      menuToggle.addEventListener("click", function () {
-
-        const isExpanded =
-          menuToggle.getAttribute("aria-expanded") === "true";
-
-        if (isExpanded) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-
-      });
-
-      // Cerrar el menú al seleccionar un enlace en móvil
-      mainNavigation.querySelectorAll("a").forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-          if (window.innerWidth < 768) {
-            closeMenu();
-          }
-
-        });
-
-      });
-
-      // Ajustar el menú al cambiar el tamaño de pantalla
-      window.addEventListener("resize", function () {
-
-        if (window.innerWidth >= 768) {
-
-          mainNavigation.classList.remove("hidden");
-          menuToggle.setAttribute("aria-expanded", "false");
-
-          if (menuIcon) {
-            menuIcon.classList.remove("fa-xmark");
-            menuIcon.classList.add("fa-bars");
-          }
-
-        } else {
-
-          closeMenu();
-
-        }
-
-      });
-
-    });
-  </script>
-
-
-  <!-- Buscador global compartido -->
-  <script src="busqueda.js" defer></script>
-  
-
+  <script src="js/app.js"></script>
+  <script src="js/bitacora.js"></script>
 </body>
 </html>
