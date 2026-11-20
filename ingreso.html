@@ -526,138 +526,100 @@
         </button>
 
 
-        <!-- Navegación -->
-        <nav id="main-navigation"
-             class="hidden w-full pb-4 md:block md:w-auto md:pb-0">
+         <!-- Menú principal -->
+                <nav id="main-navigation"
+                     aria-label="Navegación principal"
+                     class="hidden w-full pb-4 md:block md:w-auto md:pb-0">
 
-         <ul class="flex flex-col gap-1 text-sm font-medium md:flex-row md:items-center md:gap-2">
+                    <ul class="flex flex-col gap-1 text-sm font-medium md:flex-row md:items-center md:gap-2">
 
-            <!-- Inicio -->
-            <li>
+                        <li>
+                            <a href="index.html"
+                               aria-current="page"
+                               class="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-3 text-blue-200 md:py-3">
+                                <i class="fa-solid fa-house" aria-hidden="true"></i>
+                                Inicio
+                            </a>
+                        </li>
 
-              <a href="index.html"
-                 class="nav-link flex items-center gap-2 rounded-lg px-4 py-3 text-white no-underline hover:bg-white/10 hover:text-blue-200">
+                        <!-- Menú Ingresos -->
+                        <li>
+                            <details class="group relative">
+                                <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-lg px-4 py-3 transition hover:bg-white/10 hover:text-blue-200 md:justify-start">
+                                    <span class="flex items-center gap-2">
+                                        <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>
+                                        Ingresos
+                                    </span>
+                                    <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"
+                                       aria-hidden="true"></i>
+                                </summary>
 
-                <i class="fa-solid fa-house"></i>
-                Inicio
+                                <ul class="dropdown-panel mt-1 overflow-hidden rounded-lg bg-white py-2 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
+                                    <li>
+                                        <a href="ingreso.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-building mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            RACSA
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="ingvarios.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-road mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            CONAVI &amp; Externo
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="seguridad.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-shield-halved mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            Seguridad privada
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
 
-              </a>
+                        <!-- Menú Eventos -->
+                        <li>
+                            <details class="group relative">
+                                <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-lg px-4 py-3 transition hover:bg-white/10 hover:text-blue-200 md:justify-start">
+                                    <span class="flex items-center gap-2">
+                                        <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                                        Eventos
+                                    </span>
+                                    <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"
+                                       aria-hidden="true"></i>
+                                </summary>
 
-            </li>
+                                <ul class="dropdown-panel mt-1 overflow-hidden rounded-lg bg-white py-2 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
+                                    <li>
+                                        <a href="conavi.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-road mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            Eventos CONAVI
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="eventos.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-list-check mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            Eventos varios
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="controlvehicular.html"
+                                           class="block px-4 py-3 transition hover:bg-blue-50 hover:text-blue-700">
+                                            <i class="fa-solid fa-car mr-2 w-4 text-blue-500" aria-hidden="true"></i>
+                                            Control vehicular
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
 
-
-            <!-- Ingresos -->
-            <li>
-
-              <details class="group relative">
-
-                <summary
-                  class="nav-link active flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
-
-                  <i class="fa-solid fa-clipboard-list"></i>
-                  Ingresos
-
-                  <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
-
-                </summary>
-
-
-                <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
-
-                  <li>
-                    <a href="ingreso.html"
-                       class="active block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700"
-                       aria-current="page">
-
-                      <i class="fa-solid fa-users mr-2"></i>
-                      Ingreso
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="ingvarios.html"
-                       class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
-
-                      <i class="fa-solid fa-user-group mr-2"></i>
-                      CONAVI & Externo
-
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="seguridad.html"
-                       class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
-
-                      <i class="fa-solid fa-shield-halved mr-2"></i>
-                      Seguridad privada
-
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="conavi.html"
-                       class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
-
-                      <i class="fa-solid fa-road mr-2"></i>
-                      CONAVI
-
-                    </a>
-                  </li>
-
-                </ul>
-
-              </details>
-
-            </li>
-
-
-            <!-- Eventos -->
-            <li>
-
-              <details class="group relative">
-
-                <summary
-                  class="nav-link flex cursor-pointer list-none items-center gap-2 rounded-lg px-4 py-3 text-white hover:bg-white/10 hover:text-blue-200">
-
-                  <i class="fa-solid fa-calendar-days"></i>
-                  Eventos varios
-
-                  <i class="fa-solid fa-chevron-down ml-1 text-xs transition-transform group-open:rotate-180"></i>
-
-                </summary>
-
-
-                <ul class="dropdown-panel mt-1 list-none overflow-hidden rounded-lg bg-white py-2 pl-0 text-slate-700 shadow-xl md:absolute md:left-0 md:top-full md:mt-2 md:w-56">
-
-                  <li>
-                    <a href="eventos.html"
-                       class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
-
-                      <i class="fa-solid fa-calendar-check mr-2"></i>
-                      Eventos
-
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="controlvehicular.html"
-                       class="block px-4 py-2 text-slate-700 no-underline hover:bg-slate-100 hover:text-blue-700">
-
-                      <i class="fa-solid fa-car mr-2"></i>
-                      Control vehicular
-
-                    </a>
-                  </li>
-
-                </ul>
-
-              </details>
-
-            </li>
-
-          </ul>
-
-        </nav>
+                    </ul>
+                </nav>
 
       </div>
 
